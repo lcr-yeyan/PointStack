@@ -1,8 +1,8 @@
 <div align="center">
 
-# PointStack++
+# PointStack
 
-### Attention-Enhanced PointNet++ for Stacked Object Perception and Hierarchical Reasoning
+### Attention-Enhanced PointNet for Stacked Object Perception and Hierarchical Reasoning
 
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.5+-ee4c2c.svg)](https://pytorch.org/)
@@ -15,7 +15,7 @@
 
 ## Overview
 
-**PointStack++** is a 3D deep vision framework for robotic grasping in stacked object scenarios. It extends PointNet++ with channel attention, position attention, and multi-scale feature fusion to achieve high-precision semantic segmentation of point clouds. On top of segmentation, it performs instance clustering, hierarchical relationship reasoning, and grasp order planning — forming a complete perception-to-action pipeline.
+**PointStack** is a 3D deep vision framework for robotic grasping in stacked object scenarios. It extends PointNet with channel attention, position attention, and multi-scale feature fusion to achieve high-precision semantic segmentation of point clouds. On top of segmentation, it performs instance clustering, hierarchical relationship reasoning, and grasp order planning — forming a complete perception-to-action pipeline.
 
 > This project is part of an undergraduate thesis: *"Robotic Arm Grasping of Stacked Objects Based on 3D Depth Vision"* at China Jiliang University.
 
@@ -35,7 +35,7 @@
 
 ```
 ┌──────────────┐    ┌─────────────────┐    ┌──────────────────┐
-│  PyBullet    │───▶│  PointStack++   │───▶│  Instance        │
+│  PyBullet    │───▶│  PointStack     │───▶│  Instance        │
 │  Simulation  │    │  Semantic Seg   │    │  Clustering      │
 └──────────────┘    └─────────────────┘    └────────┬─────────┘
                                                     │
@@ -49,9 +49,9 @@
 
 ## Model Architecture
 
-PointStack++ builds upon the PointNet++ encoder-decoder framework with the following enhancements:
+PointStack builds upon the PointNet encoder-decoder framework with the following enhancements:
 
-| Component | Standard PointNet++ | PointStack++ (Ours) |
+| Component | Standard PointNet | PointStack (Ours) |
 |-----------|--------------------|---------------------|
 | Input Channels | 3 (XYZ) or 6 (XYZ+RGB) | **6** (XYZ + 3 Z-normalizations) |
 | SA Channel Attention | None | **SE-Net** per SA layer |
@@ -99,8 +99,8 @@ Input: (B, 2048, 6)
 ### Setup
 
 ```bash
-git clone https://github.com/lcr-yeyan/PointStackPlusPlus.git
-cd PointStackPlusPlus
+git clone https://github.com/lcr-yeyan/PointStack.git
+cd PointStack
 
 pip install -r requirements.txt
 ```
@@ -228,9 +228,9 @@ python auto_realtime_test.py
 ## Project Structure
 
 ```
-PointStackPlusPlus/
+PointStack/
 ├── models/                          # Neural network definitions
-│   ├── pointnet_seg.py              # PointStack++ (attention-enhanced PointNet++)
+│   ├── pointnet_seg.py              # PointStack (attention-enhanced PointNet++)
 │   ├── sem_seg_net.py               # Baseline semantic segmentation networks
 │   ├── instance_seg_net.py          # Instance segmentation networks
 │   └── stack_layer_net.py           # Stacking layer prediction network
@@ -275,14 +275,14 @@ All pipeline parameters are centralized in `configs/default_config.yaml`:
 
 ## Citation
 
-If you use PointStack++ in your research, please cite:
+If you use PointStack in your research, please cite:
 
 ```bibtex
-@software{PointStackPlusPlus,
+@software{PointStack,
   author    = {Liu, Changrui},
-  title     = {PointStack++: Attention-Enhanced PointNet++ for Stacked Object Perception and Hierarchical Reasoning},
+  title     = {PointStack: Attention-Enhanced PointNet++ for Stacked Object Perception and Hierarchical Reasoning},
   year      = {2026},
-  url       = {https://github.com/lcr-yeyan/PointStackPlusPlus}
+  url       = {https://github.com/lcr-yeyan/PointStack}
 }
 ```
 

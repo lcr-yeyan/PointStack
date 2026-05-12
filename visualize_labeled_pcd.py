@@ -19,8 +19,13 @@ for sd in sorted(os.listdir(base)):
     if not os.path.isdir(d):
         continue
 
-    depth = np.load(os.path.join(d, "depth_clean.npy"))
-    labels = np.load(os.path.join(d, "semantic_labels.npy"))
+    depth_path = os.path.join(d, "depth_clean.npy")
+    labels_path = os.path.join(d, "semantic_labels.npy")
+    if not os.path.exists(depth_path) or not os.path.exists(labels_path):
+        continue
+
+    depth = np.load(depth_path)
+    labels = np.load(labels_path)
 
     h, w = depth.shape
     valid = depth > NEAR
