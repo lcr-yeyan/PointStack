@@ -1,0 +1,88 @@
+{
+  "scene_id": "side_by_side",
+  "description_cn": "两长方体独立放置，无接触",
+  "description_en": "two cuboids placed separately on table",
+  "num_objects": 2,
+  "has_stacking": false,
+  "objects": [
+    {
+      "id": 0,
+      "type": "cuboid",
+      "name": "cuboid_A",
+      "half_extents": [
+        0.06,
+        0.04,
+        0.03
+      ],
+      "color_rgb": [
+        0.85,
+        0.3,
+        0.15
+      ],
+      "position": [
+        -0.09,
+        0.0,
+        0.03
+      ],
+      "z_min": 0.0,
+      "z_max": 0.06
+    },
+    {
+      "id": 1,
+      "type": "cuboid",
+      "name": "cuboid_B",
+      "half_extents": [
+        0.04,
+        0.03,
+        0.025
+      ],
+      "color_rgb": [
+        0.15,
+        0.35,
+        0.85
+      ],
+      "position": [
+        0.07,
+        0.0,
+        0.025
+      ],
+      "z_min": 0.0,
+      "z_max": 0.05
+    }
+  ],
+  "hierarchy": {
+    "layers": {
+      "0": [
+        0,
+        1
+      ]
+    },
+    "edges": [],
+    "grasp_order": [
+      0,
+      1
+    ]
+  },
+  "semantic_labels": {
+    "format": "per-pixel uint8, shape (H, W)",
+    "classes": {
+      "0": "background / table",
+      "1": "foreground / object"
+    },
+    "file": "semantic_labels.npy"
+  },
+  "depth": {
+    "clean_file": "depth_clean.npy",
+    "noisy_file": "depth_noisy.npy",
+    "noise_info": {
+      "gaussian_sigma_mm": 3.0,
+      "center_drop_max_prob": 0.12,
+      "center_dropped_pixels": 11285,
+      "edge_dropped_pixels": 894,
+      "speckle_prob": 0.005,
+      "valid_before": 368640,
+      "valid_after": 354734,
+      "missing_pct": 3.8
+    }
+  }
+}

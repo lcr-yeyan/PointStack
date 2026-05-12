@@ -1,0 +1,17 @@
+{
+  "total_frames": 1,
+  "avg_latency_ms": 884.2,
+  "avg_instances": 1.0,
+  "results": [
+    {
+      "frame": 1,
+      "stacking": true,
+      "num_instances": 1,
+      "num_edges": 0,
+      "grasp_order": [
+        0
+      ],
+      "latency_ms": 884.2
+    }
+  ]
+}
