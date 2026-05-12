@@ -1,5 +1,5 @@
 """非交互式实时仿真测试 - 自动生成随机场景并收集数据"""
-import os, sys, json, time, random
+import os, json, time, random
 import numpy as np
 import cv2
 import torch
@@ -8,12 +8,9 @@ from scipy.spatial import cKDTree
 from collections import defaultdict
 from loguru import logger
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 from models.pointnet_seg import PointNetPlusPlusAttentionSeg
 from modules.hierarchy import build_hierarchy, HierarchyResult
 from modules.postprocess import InstanceClustering, Instance
-from utils.config import load_config
 from omegaconf import OmegaConf
 import open3d as o3d
 
@@ -192,7 +189,7 @@ class AutoRealtimeTester:
                                        stability_scores={}, stacking_groups={}, group_layers={},
                                        group_grasp_orders={})
 
-        config = load_config("configs/default_config.yaml")
+        config = OmegaConf.load("configs/default_config.yaml")
         config_dict = OmegaConf.to_container(config, resolve=True)
 
         fg_indices_all = np.where(fg_mask)[0]

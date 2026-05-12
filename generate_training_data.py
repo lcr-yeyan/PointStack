@@ -7,10 +7,8 @@
 输出: camera_operate/training_data/train/ 和 val/
 """
 
-import os, sys, json, time
+import os, json, time
 import numpy as np
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import cv2
 import open3d as o3d

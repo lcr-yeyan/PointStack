@@ -99,7 +99,7 @@ Input: (B, 2048, 6)
 ### Setup
 
 ```bash
-git clone https://github.com/yourusername/PointStackPlusPlus.git
+git clone https://github.com/lcr-yeyan/PointStackPlusPlus.git
 cd PointStackPlusPlus
 
 pip install -r requirements.txt
@@ -131,7 +131,6 @@ pybullet>=3.2.0
 Generate 800 training + 200 validation scenes with random cuboid stacking:
 
 ```bash
-cd camera_operate
 python generate_training_data.py
 ```
 
@@ -141,7 +140,7 @@ python generate_training_data.py
 python train_sem_seg.py
 ```
 
-Training artifacts are saved to `camera_operate/training_data/train_logs/`:
+Training artifacts are saved to `training_data/train_logs/`:
 - `best_model.pth` — best checkpoint
 - `loss_curves.png` — loss and mIoU curves
 - `metrics.json` — per-epoch detailed metrics
@@ -161,16 +160,15 @@ Evaluates the model on 8 carefully designed stacking scenarios. Results saved to
 Semantic segmentation → instance clustering → hierarchy reasoning → visualization:
 
 ```bash
-# Run from project root (for config path)
-python camera_operate/simulate_inference.py
+python simulate_inference.py
 ```
 
-Results saved to `camera_operate/data_preview/_hierarchy_results/`.
+Results saved to `data_preview/_hierarchy_results/`.
 
 ### 5. Real-Time Simulation Test
 
 ```bash
-python camera_operate/realtime_sim_test.py
+python realtime_sim_test.py
 ```
 
 Interactive mode: press `n` for new random scene, `s` to save, `q` to quit.
@@ -178,7 +176,7 @@ Interactive mode: press `n` for new random scene, `s` to save, `q` to quit.
 For automated batch testing:
 
 ```bash
-python camera_operate/auto_realtime_test.py
+python auto_realtime_test.py
 ```
 
 ---
@@ -239,22 +237,23 @@ PointStackPlusPlus/
 ├── modules/                         # Core algorithm modules
 │   ├── postprocess.py               # Instance clustering (Z-layered + refinement)
 │   ├── hierarchy.py                 # Hierarchical relationship reasoning
-│   ├── preprocessing.py             # Point cloud preprocessing
-│   ├── capture.py                   # Camera capture utilities
-│   └── output.py                    # Output formatting
-├── camera_operate/                  # Main scripts
-│   ├── train_sem_seg.py             # Training script
-│   ├── test_model.py                # Model evaluation on 8 test scenes
-│   ├── simulate_inference.py        # Full inference pipeline
-│   ├── generate_training_data.py    # Training data generation
-│   ├── generate_stacking_data.py    # Test scene generation
-│   ├── realtime_sim_test.py         # Interactive real-time simulation
-│   ├── auto_realtime_test.py        # Automated batch simulation test
-│   └── generate_figures.py          # Paper figure generation
+│   └── preprocessing.py             # Point cloud preprocessing
 ├── configs/                         # Configuration files
 │   └── default_config.yaml          # Default pipeline configuration
-├── utils/                           # Utility functions
-│   └── config.py                    # Config loading/saving
+├── data_preview/                    # Preview/test scene data
+│   └── _hierarchy_results/          # Hierarchy reasoning outputs
+├── paper_figures/                   # Paper figures and plots
+├── realtime_results/                # Real-time simulation results
+├── sim_test_results/                # Simulation test results
+├── train_sem_seg.py                 # Training script
+├── test_model.py                    # Model evaluation on 8 test scenes
+├── simulate_inference.py            # Full inference pipeline
+├── generate_training_data.py        # Training data generation
+├── generate_stacking_data.py        # Test scene generation
+├── realtime_sim_test.py             # Interactive real-time simulation
+├── auto_realtime_test.py            # Automated batch simulation test
+├── generate_figures.py              # Paper figure generation
+├── visualize_labeled_pcd.py         # Labeled point cloud visualization
 ├── requirements.txt                 # Python dependencies
 └── README.md
 ```
@@ -283,7 +282,7 @@ If you use PointStack++ in your research, please cite:
   author    = {Liu, Changrui},
   title     = {PointStack++: Attention-Enhanced PointNet++ for Stacked Object Perception and Hierarchical Reasoning},
   year      = {2026},
-  url       = {https://github.com/yourusername/PointStackPlusPlus}
+  url       = {https://github.com/lcr-yeyan/PointStackPlusPlus}
 }
 ```
 

@@ -4,17 +4,14 @@
 展示从"模型输出"到"层级关系"的完整后处理流程。
 """
 
-import os, sys, json
+import os, json
 import numpy as np
 import cv2
 import open3d as o3d
 from scipy.ndimage import gaussian_filter1d
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 from loguru import logger
 from omegaconf import OmegaConf
-from utils.config import load_config
 from modules.postprocess import Instance, InstanceSegmentationResult
 from modules.hierarchy import build_hierarchy, HierarchyResult
 
@@ -532,7 +529,7 @@ def run_on_scene(scene_dir, config_path="configs/default_config.yaml"):
     logger.info(f"Points: {n_points} total, {n_object} object points")
 
     # instance clustering
-    config = load_config(config_path)
+    config = OmegaConf.load(config_path)
     config_dict = OmegaConf.to_container(config, resolve=True)
     inst_result = cluster_instances(points, sem_labels, config_dict)
     instances = inst_result.instances

@@ -11,11 +11,9 @@ PointNet++Attention 训练: 2类语义分割 (桌面=0, 物体=1)
   - training_report.txt    训练报告
 """
 
-import os, sys, json, time
+import os, json, time
 import numpy as np
 from collections import defaultdict
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import torch
 import torch.nn as nn

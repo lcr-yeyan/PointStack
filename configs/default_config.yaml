@@ -1,0 +1,128 @@
+project:
+  name: "StackedScenePerception"
+  version: "3.0"
+
+camera:
+  type: "realsense_d435i"
+  depth_width: 640
+  depth_height: 480
+  depth_fps: 30
+  color_width: 640
+  color_height: 480
+  color_fps: 30
+  depth_preset: "High Accuracy"
+  enable_temporal_filter: true
+  temporal_filter_strength: 0.5
+  enable_spatial_filter: true
+  spatial_filter_magnitude: 2
+  align_depth_to_color: true
+
+preprocessing:
+  roi:
+    depth_min: 0.3
+    depth_max: 1.2
+    x_min: -0.25
+    x_max: 0.25
+    y_min: -0.20
+    y_max: 0.20
+  statistical_outlier_removal:
+    nb_neighbors: 20
+    std_ratio: 2.0
+  voxel_downsample:
+    voxel_size: 0.005
+  normal_estimation:
+    k_nn: 30
+  fixed_sampling:
+    num_points: 2048
+  normalization:
+    centering: true
+    scale_to_unit_sphere: true
+
+model:
+  name: "pointnet_pp_attention"
+  input_channels: 6
+  num_classes: 11
+  use_normal: false
+  tnet_reg_weight: 0.001
+
+training:
+  batch_size: 8
+  epochs: 300
+  optimizer: "adamw"
+  learning_rate: 0.001
+  scheduler: "cosine_annealing"
+  scheduler_t_max: 300
+  early_stopping_patience: 60
+  warmup_epochs: 10
+  warmup_lr_start: 1e-5
+  label_smoothing: 0.05
+  use_focal_loss: true
+  focal_alpha: 0.25
+  focal_gamma: 2.0
+  dice_weight: 1.0
+  lovasz_weight: 2.0
+  data_augmentation:
+    random_rotation_range: 180
+    random_scale_range: [0.7, 1.3]
+    jitter_std: 0.03
+    point_dropout_ratio: 0.15
+    elastic_distortion_sigma: 0.02
+    elastic_distortion_magnitude: 0.06
+    height_jitter_std: 0.05
+    cutout_ratio: 0.1
+    mixup_prob: 0.1
+    mixup_alpha: 0.2
+    flip_z_prob: 0.3
+  pretrained:
+    enabled: false
+    pretrain_epochs: 100
+    finetune_epochs: 100
+
+postprocess:
+  dbscan:
+    eps: 0.03
+    min_samples: 10
+  instance_filter:
+    min_point_count: 50
+  cluster:
+    tolerance: 0.02
+    min_samples: 8
+  use_z_layered_clustering: true
+
+hierarchy:
+  method: "spatial_geometry"
+  contact_threshold: 0.02
+  z_tolerance: 0.01
+  z_gap_threshold: 0.20
+  xy_overlap_min: 0.02
+  contact_z_tolerance: 0.08
+  indirect_support_enabled: true
+  max_indirect_depth: 3
+  z_gap_factor_by_size: true
+  max_z_gap_for_stacking: 0.30
+  xy_proximity_max: 0.20
+  min_z_gap_for_stacking: 0.005
+
+output:
+  save_dir: "./outputs"
+  visualization: true
+  export_json: true
+
+paths:
+  data_root: "./dataset"
+  checkpoint_dir: "./checkpoints_v5"
+  log_dir: "./logs"
+  sim_train: "./dataset/sim_train_v4"
+  sim_val: "./dataset/sim_val_v4"
+  sim_test: "./dataset/sim_test_v4"
+  real_data: "./dataset/real"
+
+simulation:
+  physics_steps: 300
+  velocity_threshold: 0.01
+  angular_velocity_threshold: 0.01
+  stable_steps: 20
+  num_objects_range: [3, 10]
+  depth_noise_sigma_range: [0.001, 0.003]
+  fly_point_ratio: 0.005
+  edge_erosion_pixels: [2, 3]

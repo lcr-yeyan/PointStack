@@ -11,8 +11,6 @@ import open3d as o3d
 import torch
 from collections import defaultdict
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 # suppress debug logs before module imports
 from loguru import logger
 logger.remove()
@@ -222,10 +220,9 @@ class RealtimeSimTester:
 
         from modules.postprocess import InstanceClustering
         from omegaconf import OmegaConf
-        from utils.config import load_config
         import open3d as o3d
 
-        config = load_config("configs/default_config.yaml")
+        config = OmegaConf.load("configs/default_config.yaml")
         config_dict = OmegaConf.to_container(config, resolve=True)
 
         # voxel downsampling for speed

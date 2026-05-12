@@ -6,14 +6,12 @@
   - 总览: summary.json + 全部场景的对比拼图
 """
 
-import os, sys, json, time
+import os, json, time
 import numpy as np
 import cv2
 import open3d as o3d
 import torch
 from collections import defaultdict
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from loguru import logger
 from models.pointnet_seg import PointNetPlusPlusAttentionSeg
