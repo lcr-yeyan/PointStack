@@ -86,6 +86,8 @@ Input: (B, 2048, 6)
   └── Classifier ── Conv1d(128→256) → Dropout(0.3) → Conv1d(256→128) → Dropout(0.2) → Conv1d(128→2)
 ```
 
+![Architecture](paper_figures/architecture.png)
+
 ---
 
 ## Installation
@@ -197,6 +199,10 @@ python auto_realtime_test.py
 | S8 | Aligned stack (different sizes) | **1.0000** | **1.0000** | 566ms |
 | **Avg** | | **0.9982** | | **594ms** |
 
+![Test mIoU](paper_figures/fig_test_miou.png)
+![Test Latency](paper_figures/fig_test_latency.png)
+![Confusion Matrices](paper_figures/fig_confusion_matrices.png)
+
 ### Training Summary
 
 | Metric | Value |
@@ -208,12 +214,19 @@ python auto_realtime_test.py
 | Validation Scenes | 200 |
 | Model Parameters | 2,179,459 |
 
+![Training Curves](paper_figures/fig_training_curves.png)
+![Loss Detail](paper_figures/fig_loss_detail.png)
+![mIoU Detail](paper_figures/fig_miou_detail.png)
+![Model Comparison](paper_figures/fig_model_comparison.png)
+
 ### Hierarchical Reasoning (8 Test Scenes)
 
 | Metric | Value |
 |--------|-------|
 | Accuracy | **87.5%** (7/8) |
 | Failure case | Cross-stack (S7) — insufficient Z-gap |
+
+![Hierarchy Results](paper_figures/fig_hierarchy_results.png)
 
 ### Real-Time Simulation (30 Random Scenes)
 
@@ -222,6 +235,9 @@ python auto_realtime_test.py
 | Overall Accuracy | 73.33% |
 | Stacking Detection Accuracy | **95.24%** |
 | Average Latency | 986.8ms |
+
+![Real-Time Accuracy](paper_figures/fig_realtime_accuracy.png)
+![Real-Time Scatter](paper_figures/fig_realtime_scatter.png)
 
 ---
 
