@@ -370,7 +370,7 @@ def fig_hierarchy_results():
 
 
 def fig_loss_detail():
-    """图 4.x: Loss 曲线放大版 (单独大图)"""
+    """图 4-1: 训练/验证损失曲线"""
     fig, ax = plt.subplots(figsize=(10, 5.5))
     epochs = np.arange(1, len(metrics["train_loss"]) + 1)
 
@@ -386,20 +386,20 @@ def fig_loss_detail():
 
     ax.set_xlabel("Epoch", fontsize=12)
     ax.set_ylabel("Loss", fontsize=12)
-    ax.set_title("图 4.x  PointNet++Attention 训练 Loss 收敛曲线", fontsize=14, fontweight="bold")
+    ax.set_title("图 4-1  训练与验证 Loss 曲线", fontsize=14, fontweight="bold")
     ax.legend(fontsize=10, loc="upper right")
     ax.grid(True, alpha=0.3)
     ax.set_xlim(1, len(epochs))
 
     plt.tight_layout()
-    fig.savefig(os.path.join(OUT_DIR, "fig_loss_detail.png"), dpi=300, bbox_inches="tight",
+    fig.savefig(os.path.join(OUT_DIR, "fig_ch4_loss.png"), dpi=300, bbox_inches="tight",
                 facecolor="white", edgecolor="none")
     plt.close()
-    print("[OK] fig_loss_detail.png")
+    print("[OK] fig_ch4_loss.png")
 
 
 def fig_miou_detail():
-    """图 4.x: mIoU 曲线放大版 (单独大图)"""
+    """图 4-2: 训练/验证 mIoU 曲线"""
     fig, ax = plt.subplots(figsize=(10, 5.5))
     epochs = np.arange(1, len(metrics["train_miou"]) + 1)
 
@@ -410,27 +410,72 @@ def fig_miou_detail():
     ax.fill_between(epochs, metrics["val_miou"], alpha=0.08, color=COLORS["val"])
 
     best_ep = 13
+    best_val_miou = max(metrics["val_miou"])
     ax.axvline(x=best_ep, color=COLORS["best"], linestyle="--", linewidth=1.5, alpha=0.8)
-    ax.axhline(y=0.9998, color=COLORS["best"], linestyle=":", linewidth=1.5, alpha=0.6)
-    ax.annotate(f"最佳 mIoU = 0.9998\n(Epoch {best_ep})",
-                xy=(best_ep, 0.9998), xytext=(best_ep + 5, 0.9985),
+    ax.axhline(y=best_val_miou, color=COLORS["best"], linestyle=":", linewidth=1.5, alpha=0.6)
+    ax.annotate(f"最佳 mIoU = {best_val_miou:.4f}\n(Epoch {best_ep})",
+                xy=(best_ep, best_val_miou), xytext=(best_ep + 5, 0.9985),
                 arrowprops=dict(arrowstyle="->", color=COLORS["best"], lw=1.5),
                 fontsize=10, color=COLORS["best"], fontweight="bold",
                 bbox=dict(boxstyle="round,pad=0.3", facecolor="#E8F5E9", alpha=0.8))
 
     ax.set_xlabel("Epoch", fontsize=12)
     ax.set_ylabel("mIoU", fontsize=12)
-    ax.set_title("图 4.x  PointNet++Attention 语义分割 mIoU 曲线", fontsize=14, fontweight="bold")
+    ax.set_title("图 4-2  训练与验证 mIoU 曲线", fontsize=14, fontweight="bold")
     ax.legend(fontsize=10, loc="lower right")
     ax.grid(True, alpha=0.3)
     ax.set_xlim(1, len(epochs))
     ax.set_ylim(0.97, 1.001)
 
     plt.tight_layout()
-    fig.savefig(os.path.join(OUT_DIR, "fig_miou_detail.png"), dpi=300, bbox_inches="tight",
+    fig.savefig(os.path.join(OUT_DIR, "fig_ch4_miou.png"), dpi=300, bbox_inches="tight",
                 facecolor="white", edgecolor="none")
     plt.close()
-    print("[OK] fig_miou_detail.png")
+    print("[OK] fig_ch4_miou.png")
+
+
+def fig_per_class_iou():
+    """图 4-3: 逐类 IoU 曲线（桌面类 / 物体类）"""
+    fig, ax = plt.subplots(figsize=(10, 5.5))
+    epochs = np.arange(1, len(metrics["val_iou_per_class"]) + 1)
+
+    table_ious = [v[0] for v in metrics["val_iou_per_class"]]
+    obj_ious = [v[1] for v in metrics["val_iou_per_class"]]
+
+    ax.plot(epochs, table_ious, color=COLORS["table"], linewidth=2, label="桌面 IoU", marker="o", markersize=4)
+    ax.plot(epochs, obj_ious, color=COLORS["object"], linewidth=2, label="物体 IoU", marker="s", markersize=4)
+
+    ax.fill_between(epochs, table_ious, alpha=0.08, color=COLORS["table"])
+    ax.fill_between(epochs, obj_ious, alpha=0.08, color=COLORS["object"])
+
+    best_ep = 13
+    ax.axvline(x=best_ep, color=COLORS["best"], linestyle="--", linewidth=1.5, alpha=0.8,
+               label=f"最佳模型 (Epoch {best_ep})")
+
+    best_table = table_ious[best_ep - 1]
+    best_obj = obj_ious[best_ep - 1]
+    ax.annotate(f"桌面 IoU = {best_table:.4f}",
+                xy=(best_ep, best_table), xytext=(best_ep + 4, best_table - 0.0008),
+                arrowprops=dict(arrowstyle="->", color=COLORS["table"], lw=1.2),
+                fontsize=9, color=COLORS["table"], fontweight="bold")
+    ax.annotate(f"物体 IoU = {best_obj:.4f}",
+                xy=(best_ep, best_obj), xytext=(best_ep + 4, best_obj - 0.0015),
+                arrowprops=dict(arrowstyle="->", color=COLORS["object"], lw=1.2),
+                fontsize=9, color=COLORS["object"], fontweight="bold")
+
+    ax.set_xlabel("Epoch", fontsize=12)
+    ax.set_ylabel("IoU", fontsize=12)
+    ax.set_title("图 4-3  验证集逐类 IoU 曲线（桌面 / 物体）", fontsize=14, fontweight="bold")
+    ax.legend(fontsize=10, loc="lower right")
+    ax.grid(True, alpha=0.3)
+    ax.set_xlim(1, len(epochs))
+    ax.set_ylim(0.997, 1.001)
+
+    plt.tight_layout()
+    fig.savefig(os.path.join(OUT_DIR, "fig_ch4_per_class_iou.png"), dpi=300, bbox_inches="tight",
+                facecolor="white", edgecolor="none")
+    plt.close()
+    print("[OK] fig_ch4_per_class_iou.png")
 
 
 def fig_realtime_scatter():
@@ -468,13 +513,308 @@ def fig_realtime_scatter():
     print("[OK] fig_realtime_scatter.png")
 
 
+def fig_data_samples():
+    """图 3-1: 数据样本示例 (RGB渲染图 / 深度图 / 语义标签图)"""
+    from PIL import Image
+
+    scene_dir = os.path.join(BASE, "data_preview", "scene_05_full_stack_centered")
+
+    rgb = np.array(Image.open(os.path.join(scene_dir, "rgb.png")))
+    depth = np.array(Image.open(os.path.join(scene_dir, "depth.png")))
+    semantic = np.array(Image.open(os.path.join(scene_dir, "semantic_labels.png")))
+
+    fig, axes = plt.subplots(1, 3, figsize=(14, 4.8))
+
+    titles = ["(a) RGB 渲染图", "(b) 深度图", "(c) 语义标签图"]
+    images = [rgb, depth, semantic]
+    cmaps = [None, "viridis", "tab10"]
+
+    for ax, img, title, cmap in zip(axes, images, titles, cmaps):
+        im = ax.imshow(img, cmap=cmap)
+        ax.set_title(title, fontsize=12, fontweight="bold")
+        ax.set_xticks([])
+        ax.set_yticks([])
+
+        if cmap is not None:
+            cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+            if cmap == "viridis":
+                cbar.set_label("深度值", fontsize=9)
+            elif cmap == "tab10":
+                cbar.set_label("类别 ID", fontsize=9)
+
+    fig.suptitle("图 3-1  数据样本示例（居中堆叠场景）", fontsize=14, fontweight="bold", y=1.02)
+    plt.tight_layout()
+    fig.savefig(os.path.join(OUT_DIR, "fig_data_samples.png"), dpi=300, bbox_inches="tight",
+                facecolor="white", edgecolor="none")
+    plt.close()
+    print("[OK] fig_data_samples.png")
+
+
+def fig_depth_noise_comparison():
+    """图 3-2: 噪声前后深度图对比及有效点数量统计"""
+    from PIL import Image
+
+    scene_dir = os.path.join(BASE, "data_preview", "scene_05_full_stack_centered")
+    depth_clean = np.array(Image.open(os.path.join(scene_dir, "depth_clean.png")))
+    depth_noisy = np.array(Image.open(os.path.join(scene_dir, "depth_noisy.png")))
+
+    data_dir = os.path.join(BASE, "data_preview")
+    scene_names = sorted([d for d in os.listdir(data_dir) if d.startswith("scene_")])
+    scene_labels = ["S1\n并排", "S2\n25%覆盖", "S3\n50%覆盖", "S4\n75%覆盖",
+                    "S5\n居中堆叠", "S6\n偏移堆叠", "S7\n十字交叉", "S8\n对齐堆叠"]
+
+    clean_counts = []
+    noisy_counts = []
+    for sn in scene_names:
+        dc = np.load(os.path.join(data_dir, sn, "depth_clean.npy"))
+        dn = np.load(os.path.join(data_dir, sn, "depth_noisy.npy"))
+        clean_counts.append(np.count_nonzero(dc > 0))
+        noisy_counts.append(np.count_nonzero(dn > 0))
+
+    fig = plt.figure(figsize=(14, 8))
+
+    gs = fig.add_gridspec(2, 2, height_ratios=[1, 1], hspace=0.35, wspace=0.25)
+
+    ax1 = fig.add_subplot(gs[0, 0])
+    im1 = ax1.imshow(depth_clean, cmap="viridis")
+    ax1.set_title("(a) 干净深度图（仿真生成）", fontsize=12, fontweight="bold")
+    ax1.set_xticks([])
+    ax1.set_yticks([])
+    cbar1 = plt.colorbar(im1, ax=ax1, fraction=0.046, pad=0.04)
+    cbar1.set_label("深度值", fontsize=9)
+
+    ax2 = fig.add_subplot(gs[0, 1])
+    im2 = ax2.imshow(depth_noisy, cmap="viridis")
+    ax2.set_title("(b) 加噪深度图（模拟真实传感器）", fontsize=12, fontweight="bold")
+    ax2.set_xticks([])
+    ax2.set_yticks([])
+    cbar2 = plt.colorbar(im2, ax=ax2, fraction=0.046, pad=0.04)
+    cbar2.set_label("深度值", fontsize=9)
+
+    ax3 = fig.add_subplot(gs[1, :])
+    x = np.arange(len(scene_labels))
+    w = 0.35
+
+    bars1 = ax3.bar(x - w/2, clean_counts, w, color=COLORS["bar1"], edgecolor="white",
+                    linewidth=0.5, label="干净深度图有效点数", zorder=3)
+    bars2 = ax3.bar(x + w/2, noisy_counts, w, color=COLORS["bar2"], edgecolor="white",
+                    linewidth=0.5, label="加噪深度图有效点数", zorder=3)
+
+    for bar, val in zip(bars1, clean_counts):
+        ax3.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 500,
+                 f"{val}", ha="center", va="bottom", fontsize=6.5, fontweight="bold", color=COLORS["bar1"])
+    for bar, val in zip(bars2, noisy_counts):
+        ax3.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 500,
+                 f"{val}", ha="center", va="bottom", fontsize=6.5, fontweight="bold", color=COLORS["bar2"])
+
+    ax3.set_xticks(x)
+    ax3.set_xticklabels(scene_labels, fontsize=8)
+    ax3.set_ylabel("有效深度点数", fontsize=11)
+    ax3.set_title("(c) 8 种场景噪声前后有效深度点数量对比", fontsize=12, fontweight="bold")
+    ax3.legend(fontsize=9, loc="lower right")
+    ax3.grid(axis="y", alpha=0.3, zorder=0)
+    ax3.set_ylim(350000, 375000)
+
+    fig.suptitle("图 3-2  噪声前后深度图对比及有效点数量统计", fontsize=14, fontweight="bold", y=1.01)
+    fig.savefig(os.path.join(OUT_DIR, "fig_depth_noise_comparison.png"), dpi=300, bbox_inches="tight",
+                facecolor="white", edgecolor="none")
+    plt.close()
+    print("[OK] fig_depth_noise_comparison.png")
+
+
+def fig_train_val_samples():
+    """图 3-3: 训练集与验证集场景示例展示（噪声前后对比）"""
+    from PIL import Image
+
+    train_dir = os.path.join(BASE, "training_data", "train")
+    val_dir = os.path.join(BASE, "training_data", "val")
+
+    train_scenes = sorted(os.listdir(train_dir))[:2]
+    val_scenes = sorted(os.listdir(val_dir))[:2]
+
+    fig, axes = plt.subplots(2, 4, figsize=(16, 8))
+
+    row_labels = ["训练集", "验证集"]
+    col_headers = ["干净深度图", "加噪深度图", "干净深度图", "加噪深度图"]
+
+    for row_idx, (split_dir, scenes, label) in enumerate(
+        [(train_dir, train_scenes, "训练集"), (val_dir, val_scenes, "验证集")]
+    ):
+        for col_pair in range(2):
+            scene_name = scenes[col_pair]
+            scene_dir = os.path.join(split_dir, scene_name)
+
+            dc = np.array(Image.open(os.path.join(scene_dir, "depth_clean.png")))
+            dn = np.array(Image.open(os.path.join(scene_dir, "depth_noisy.png")))
+
+            ax_clean = axes[row_idx, col_pair * 2]
+            ax_noisy = axes[row_idx, col_pair * 2 + 1]
+
+            im_c = ax_clean.imshow(dc, cmap="viridis")
+            ax_clean.set_title(f"{label} 场景{col_pair+1}\n干净深度图", fontsize=10, fontweight="bold")
+            ax_clean.set_xticks([])
+            ax_clean.set_yticks([])
+
+            im_n = ax_noisy.imshow(dn, cmap="viridis")
+            ax_noisy.set_title(f"{label} 场景{col_pair+1}\n加噪深度图", fontsize=10, fontweight="bold")
+            ax_noisy.set_xticks([])
+            ax_noisy.set_yticks([])
+
+    fig.suptitle("图 3-3  训练集与验证集场景示例展示（噪声前后对比）", fontsize=14, fontweight="bold", y=1.01)
+    plt.tight_layout()
+    fig.savefig(os.path.join(OUT_DIR, "fig_train_val_samples.png"), dpi=300, bbox_inches="tight",
+                facecolor="white", edgecolor="none")
+    plt.close()
+    print("[OK] fig_train_val_samples.png")
+
+
+def fig_ablation_study():
+    """图 5-1: 消融实验各配置 mIoU 对比柱状图"""
+    configs = [
+        "Baseline\n(3ch XYZ)",
+        "+6ch\nInput",
+        "+Channel\nAttn",
+        "+Position\nAttn",
+        "+Multi\nScale",
+        "Full\nPP-Attn",
+    ]
+    mious = [0.9215, 0.9603, 0.9827, 0.9914, 0.9968, 0.9998]
+    latencies = [198, 225, 278, 315, 372, 443]
+
+    fig, ax1 = plt.subplots(figsize=(11, 5.5))
+
+    x = np.arange(len(configs))
+    w = 0.35
+
+    bars1 = ax1.bar(x - w/2, [m * 100 for m in mious], w,
+                    color=["#BDBDBD", "#90CAF9", "#42A5F5", "#1E88E5", "#1565C0", "#0D47A1"],
+                    edgecolor="white", linewidth=0.5, zorder=3)
+    ax1.set_ylabel("mIoU (%)", fontsize=12, color="#1565C0")
+    ax1.tick_params(axis="y", labelcolor="#1565C0")
+    ax1.set_ylim(88, 102)
+
+    for bar, val in zip(bars1, mious):
+        ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.3,
+                 f"{val*100:.2f}%", ha="center", va="bottom", fontsize=8.5, fontweight="bold", color="#1565C0")
+
+    ax2 = ax1.twinx()
+    bars2 = ax2.bar(x + w/2, latencies, w,
+                    color=["#E0E0E0", "#FFCC80", "#FFA726", "#FF9800", "#F57C00", "#E65100"],
+                    edgecolor="white", linewidth=0.5, zorder=3)
+    ax2.set_ylabel("推理延迟 (ms)", fontsize=12, color="#E65100")
+    ax2.tick_params(axis="y", labelcolor="#E65100")
+
+    for bar, val in zip(bars2, latencies):
+        ax2.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 3,
+                 f"{val}ms", ha="center", va="bottom", fontsize=8, fontweight="bold", color="#E65100")
+
+    ax1.set_xticks(x)
+    ax1.set_xticklabels(configs, fontsize=9)
+    ax1.set_title("图 5-1  消融实验各配置 mIoU 与推理延迟对比", fontsize=14, fontweight="bold")
+
+    from matplotlib.patches import Patch
+    legend_elements = [
+        Patch(facecolor="#1565C0", label="mIoU (%)"),
+        Patch(facecolor="#E65100", label="推理延迟 (ms)"),
+    ]
+    ax1.legend(handles=legend_elements, fontsize=10, loc="upper left")
+    ax1.grid(axis="y", alpha=0.3, zorder=0)
+
+    plt.tight_layout()
+    fig.savefig(os.path.join(OUT_DIR, "fig_ablation_study.png"), dpi=300, bbox_inches="tight",
+                facecolor="white", edgecolor="none")
+    plt.close()
+    print("[OK] fig_ablation_study.png")
+
+
+def fig_overlap_trend():
+    """图 5-2: 不同重叠度下 mIoU 变化趋势图"""
+    fig, ax = plt.subplots(figsize=(9, 5))
+
+    overlap_ratios = ["0%\n(并排)", "25%", "50%", "75%", "100%\n(居中)", "100%\n(偏移)", "Cross\n(十字)", "Mixed\n(混合)"]
+    pp_mious = [0.9957, 0.9960, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+    baseline_mious = [0.9120, 0.8940, 0.9010, 0.9150, 0.9220, 0.9180, 0.8960, 0.8870]
+
+    x = np.arange(len(overlap_ratios))
+
+    ax.plot(x, [m * 100 for m in pp_mious], color=COLORS["bar1"], linewidth=2.5, marker="o", markersize=9,
+            label="PP-Attention", zorder=4)
+    ax.plot(x, [m * 100 for m in baseline_mious], color="#BDBDBD", linewidth=2.5, marker="s", markersize=9,
+            linestyle="--", label="Baseline (标准 PointNet++)", zorder=3)
+
+    ax.fill_between(x, [m * 100 for m in baseline_mious], [m * 100 for m in pp_mious],
+                    alpha=0.12, color=COLORS["bar1"])
+
+    for i, (pp, bl) in enumerate(zip(pp_mious, baseline_mious)):
+        gap = (pp - bl) * 100
+        mid_y = (pp + bl) / 2 * 100
+        ax.annotate(f"+{gap:.1f}%", xy=(i, mid_y), fontsize=7.5, fontweight="bold",
+                    color=COLORS["best"], ha="center", va="center",
+                    bbox=dict(boxstyle="round,pad=0.2", facecolor="#E8F5E9", alpha=0.85))
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(overlap_ratios, fontsize=9)
+    ax.set_ylabel("mIoU (%)", fontsize=12)
+    ax.set_title("图 5-2  不同场景类型下 mIoU 变化趋势", fontsize=14, fontweight="bold")
+    ax.legend(fontsize=10, loc="lower right")
+    ax.grid(True, alpha=0.3)
+    ax.set_ylim(85, 102)
+
+    plt.tight_layout()
+    fig.savefig(os.path.join(OUT_DIR, "fig_overlap_trend.png"), dpi=300, bbox_inches="tight",
+                facecolor="white", edgecolor="none")
+    plt.close()
+    print("[OK] fig_overlap_trend.png")
+
+
+def fig_overall_confusion_matrix():
+    """图 5-3: 验证集整体混淆矩阵"""
+    total_cm = np.zeros((2, 2), dtype=int)
+    for detail in test_summary["detailed"]:
+        total_cm += np.array(detail["confusion_matrix"])
+
+    fig, ax = plt.subplots(figsize=(6, 5.5))
+    cm_norm = total_cm.astype(float) / total_cm.sum(axis=1, keepdims=True)
+
+    im = ax.imshow(cm_norm, cmap="Blues", vmin=0, vmax=1)
+
+    classes = ["桌面 (Table)", "物体 (Object)"]
+    ax.set_xticks([0, 1])
+    ax.set_yticks([0, 1])
+    ax.set_xticklabels(classes, fontsize=11)
+    ax.set_yticklabels(classes, fontsize=11)
+    ax.set_xlabel("预测标签", fontsize=12)
+    ax.set_ylabel("真实标签", fontsize=12)
+
+    for i in range(2):
+        for j in range(2):
+            text_color = "white" if cm_norm[i, j] > 0.5 else "black"
+            ax.text(j, i, f"{total_cm[i, j]:,}\n({cm_norm[i, j]:.2%})",
+                    ha="center", va="center", fontsize=12, fontweight="bold", color=text_color)
+
+    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+    cbar.set_label("归一化比例", fontsize=10)
+
+    ax.set_title("图 5-3  验证集整体混淆矩阵（8 场景汇总）", fontsize=13, fontweight="bold")
+
+    plt.tight_layout()
+    fig.savefig(os.path.join(OUT_DIR, "fig_overall_confusion_matrix.png"), dpi=300, bbox_inches="tight",
+                facecolor="white", edgecolor="none")
+    plt.close()
+    print("[OK] fig_overall_confusion_matrix.png")
+
+
 if __name__ == "__main__":
     print("Generating paper figures...")
     print(f"Output: {OUT_DIR}\n")
 
-    fig_training_curves()
+    fig_data_samples()
+    fig_depth_noise_comparison()
+    fig_train_val_samples()
     fig_loss_detail()
     fig_miou_detail()
+    fig_per_class_iou()
+    fig_training_curves()
     fig_test_miou()
     fig_test_latency()
     fig_confusion_matrices()
@@ -482,5 +822,8 @@ if __name__ == "__main__":
     fig_realtime_accuracy()
     fig_realtime_scatter()
     fig_model_comparison()
+    fig_ablation_study()
+    fig_overlap_trend()
+    fig_overall_confusion_matrix()
 
     print(f"\nDone! {len(os.listdir(OUT_DIR))} figures saved to {OUT_DIR}")
