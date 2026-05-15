@@ -160,7 +160,7 @@ def load_gt_from_annotation(scene_dir):
     ann_path = os.path.join(scene_dir, "annotation.json")
     if not os.path.exists(ann_path):
         return None
-    with open(ann_path) as f:
+    with open(ann_path, "r", encoding="utf-8") as f:
         ann = json.load(f)
     return ann
 
@@ -292,8 +292,8 @@ def load_ablation_model(config_key):
     ckpt = torch.load(model_path, map_location=DEVICE, weights_only=False)
     config = ckpt.get("config", {})
 
-    if config.get("model_type") == "PointNetPlusPlusSeg" or config_key in ("baseline_3ch", "plus_6ch_input"):
-        input_ch = config.get("input_channels", 6 if config_key == "plus_6ch_input" else 3)
+    if config.get("model_type") == "PointNetPlusPlusSeg" or config_key == "baseline_3ch":
+        input_ch = config.get("input_channels", 3)
         model = PointNetPlusPlusSeg(input_channels=input_ch, num_classes=NUM_CLASSES)
         use_6ch = (input_ch == 6)
     else:
@@ -313,6 +313,7 @@ def evaluate_all():
     scene_dirs = sorted([
         os.path.join(DATA_DIR, d) for d in os.listdir(DATA_DIR)
         if os.path.isdir(os.path.join(DATA_DIR, d))
+        and os.path.exists(os.path.join(DATA_DIR, d, "depth_noisy.npy"))
     ])
 
     configs_to_eval = [

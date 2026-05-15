@@ -41,6 +41,9 @@ with open(os.path.join(BASE, "test_results", "summary.json"), encoding="utf-8") 
 with open(os.path.join(BASE, "realtime_results", "auto_realtime_summary.json"), encoding="utf-8") as f:
     rt_summary = json.load(f)
 
+with open(os.path.join(BASE, "ablation_eval_results", "ablation_eval_summary.json"), encoding="utf-8") as f:
+    ablation_eval = json.load(f)
+
 
 def fig_training_curves():
     """图 4.x: 训练曲线综合图 (Loss + mIoU + LR + Per-class IoU)"""
@@ -114,12 +117,14 @@ def fig_training_curves():
 
 
 def fig_test_miou():
-    """图 5.x: 8 场景语义分割 mIoU 对比"""
+    """图 5.x: 8 场景语义分割 mIoU 对比（Full PP-Attention）"""
     fig, ax = plt.subplots(figsize=(12, 5.5))
 
-    scenes = [s["scene"].replace("scene_0", "S").replace("_", "\n") for s in test_summary["per_scene"]]
-    mious = [s["miou"] for s in test_summary["per_scene"]]
-    obj_ious = [s["iou_object"] for s in test_summary["per_scene"]]
+    eval_data = ablation_eval["full_pp_attention"]["per_scene"]
+    scenes = [s["scene"].replace("scene_0", "S").replace("_", "\n") for s in eval_data]
+    mious = [s["miou"] for s in eval_data]
+    obj_ious = [s["iou_object"] for s in eval_data]
+    avg_miou = ablation_eval["full_pp_attention"]["summary"]["avg_miou"]
 
     x = np.arange(len(scenes))
     w = 0.35
@@ -134,8 +139,8 @@ def fig_test_miou():
         ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.002, f"{val:.4f}",
                 ha="center", va="bottom", fontsize=7, fontweight="bold")
 
-    ax.axhline(y=test_summary["avg_miou"], color=COLORS["best"], linestyle="--", linewidth=1.5, alpha=0.7,
-               label=f"平均 mIoU = {test_summary['avg_miou']:.4f}")
+    ax.axhline(y=avg_miou, color=COLORS["best"], linestyle="--", linewidth=1.5, alpha=0.7,
+               label=f"平均 mIoU = {avg_miou:.4f}")
 
     ax.set_xticks(x)
     ax.set_xticklabels(scenes, fontsize=8)
@@ -153,15 +158,17 @@ def fig_test_miou():
 
 
 def fig_test_latency():
-    """图 5.x: 8 场景推理延迟"""
+    """图 5.x: 8 场景推理延迟（Full PP-Attention）"""
     fig, ax = plt.subplots(figsize=(12, 5))
 
+    eval_data = ablation_eval["full_pp_attention"]["per_scene"]
     scenes_short = ["S1\n并排", "S2\n25%覆盖", "S3\n50%覆盖", "S4\n75%覆盖",
                     "S5\n居中堆叠", "S6\n偏移堆叠", "S7\n十字交叉", "S8\n对齐堆叠"]
-    lats = [s["latency_ms"] for s in test_summary["per_scene"]]
-    avg_lat = test_summary["avg_latency_ms"]
+    lats = [s["latency_ms"] for s in eval_data]
+    avg_lat = ablation_eval["full_pp_attention"]["summary"]["avg_latency_ms"]
 
-    colors_bar = [COLORS["stacking"] if s["has_stacking"] else COLORS["non_stacking"] for s in test_summary["per_scene"]]
+    has_stacking = [False, True, True, True, True, True, True, True]
+    colors_bar = [COLORS["stacking"] if hs else COLORS["non_stacking"] for hs in has_stacking]
     bars = ax.bar(scenes_short, lats, color=colors_bar, edgecolor="white", linewidth=0.5, zorder=3)
 
     for bar, val in zip(bars, lats):
@@ -189,12 +196,13 @@ def fig_test_latency():
 
 
 def fig_confusion_matrices():
-    """图 5.x: 混淆矩阵 (scene_01 和 scene_02)"""
+    """图 5.x: 混淆矩阵 (scene_01 和 scene_02, Full PP-Attention)"""
     fig, axes = plt.subplots(1, 2, figsize=(10, 4.5))
 
+    eval_data = ablation_eval["full_pp_attention"]["per_scene"]
     for idx, scene_name in enumerate(["scene_01_side_by_side", "scene_02_partial_overlap_25"]):
         ax = axes[idx]
-        detail = [d for d in test_summary["detailed"] if d["scene"] == scene_name][0]
+        detail = [d for d in eval_data if d["scene"] == scene_name][0]
         cm = np.array(detail["confusion_matrix"])
         cm_norm = cm.astype(float) / cm.sum(axis=1, keepdims=True)
 
@@ -314,18 +322,18 @@ def fig_model_comparison():
 
 
 def fig_hierarchy_results():
-    """图 5.x: 层级推理结果汇总"""
+    """图 5.x: 层级推理结果汇总（Full PP-Attention）"""
     fig, ax = plt.subplots(figsize=(12, 5.5))
 
     hierarchy_data = [
-        ("S1\n并排", False, 0, 1, True),
-        ("S2\n25%覆盖", True, 1, 2, True),
-        ("S3\n50%覆盖", True, 1, 2, True),
-        ("S4\n75%覆盖", True, 1, 2, True),
-        ("S5\n居中堆叠", True, 1, 2, True),
+        ("S1\n并排", False, 0, 1, False),
+        ("S2\n25%覆盖", True, 0, 1, True),
+        ("S3\n50%覆盖", True, 0, 1, True),
+        ("S4\n75%覆盖", True, 0, 1, False),
+        ("S5\n居中堆叠", True, 0, 1, True),
         ("S6\n偏移堆叠", True, 1, 2, True),
         ("S7\n十字交叉", True, 0, 1, False),
-        ("S8\n对齐堆叠", True, 1, 2, True),
+        ("S8\n对齐堆叠", True, 1, 2, False),
     ]
 
     scenes = [h[0] for h in hierarchy_data]
@@ -678,8 +686,8 @@ def fig_ablation_study():
         "+Multi\nScale",
         "Full\nPP-Attn",
     ]
-    mious = [0.9215, 0.9603, 0.9827, 0.9914, 0.9968, 0.9998]
-    latencies = [198, 225, 278, 315, 372, 443]
+    mious = [0.9979, 0.9989, 0.9987, 0.9991, 0.9988, 0.9982]
+    latencies = [390.1, 352.6, 343.8, 337.2, 311.3, 340.8]
 
     fig, ax1 = plt.subplots(figsize=(11, 5.5))
 
@@ -691,7 +699,7 @@ def fig_ablation_study():
                     edgecolor="white", linewidth=0.5, zorder=3)
     ax1.set_ylabel("mIoU (%)", fontsize=12, color="#1565C0")
     ax1.tick_params(axis="y", labelcolor="#1565C0")
-    ax1.set_ylim(88, 102)
+    ax1.set_ylim(99.5, 100.2)
 
     for bar, val in zip(bars1, mious):
         ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.3,
@@ -732,8 +740,8 @@ def fig_overlap_trend():
     fig, ax = plt.subplots(figsize=(9, 5))
 
     overlap_ratios = ["0%\n(并排)", "25%", "50%", "75%", "100%\n(居中)", "100%\n(偏移)", "Cross\n(十字)", "Mixed\n(混合)"]
-    pp_mious = [0.9957, 0.9960, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
-    baseline_mious = [0.9120, 0.8940, 0.9010, 0.9150, 0.9220, 0.9180, 0.8960, 0.8870]
+    pp_mious = [0.9971, 0.9933, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+    baseline_mious = [0.9985, 0.9943, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9908]
 
     x = np.arange(len(overlap_ratios))
 
@@ -758,7 +766,7 @@ def fig_overlap_trend():
     ax.set_title("图 5-2  不同场景类型下 mIoU 变化趋势", fontsize=14, fontweight="bold")
     ax.legend(fontsize=10, loc="lower right")
     ax.grid(True, alpha=0.3)
-    ax.set_ylim(85, 102)
+    ax.set_ylim(98, 102)
 
     plt.tight_layout()
     fig.savefig(os.path.join(OUT_DIR, "fig_overlap_trend.png"), dpi=300, bbox_inches="tight",
@@ -768,10 +776,8 @@ def fig_overlap_trend():
 
 
 def fig_overall_confusion_matrix():
-    """图 5-3: 验证集整体混淆矩阵"""
-    total_cm = np.zeros((2, 2), dtype=int)
-    for detail in test_summary["detailed"]:
-        total_cm += np.array(detail["confusion_matrix"])
+    """图 5-3: 测试集整体混淆矩阵（8 场景汇总，Full PP-Attention）"""
+    total_cm = np.array([[2749475, 184], [183, 89964]], dtype=int)
 
     fig, ax = plt.subplots(figsize=(6, 5.5))
     cm_norm = total_cm.astype(float) / total_cm.sum(axis=1, keepdims=True)
@@ -795,7 +801,7 @@ def fig_overall_confusion_matrix():
     cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
     cbar.set_label("归一化比例", fontsize=10)
 
-    ax.set_title("图 5-3  验证集整体混淆矩阵（8 场景汇总）", fontsize=13, fontweight="bold")
+    ax.set_title("图 5-3  测试集整体混淆矩阵（8 场景汇总，Full PP-Attention）", fontsize=13, fontweight="bold")
 
     plt.tight_layout()
     fig.savefig(os.path.join(OUT_DIR, "fig_overall_confusion_matrix.png"), dpi=300, bbox_inches="tight",

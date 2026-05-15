@@ -1,0 +1,3525 @@
+{
+  "ours_hierarchy": {
+    "config_name": "Ours (HierarchyReasoner)",
+    "config_key": "ours_hierarchy",
+    "per_scene": [
+      {
+        "scene": "scene_01_side_by_side",
+        "miou": 0.8115875824375473,
+        "iou_table": 0.9846810407974776,
+        "iou_object": 0.6384941240776169,
+        "latency_ms": 38837.86368370056,
+        "confusion_matrix": [
+          [
+            340098,
+            1
+          ],
+          [
+            5290,
+            9345
+          ]
+        ],
+        "boundary_f1": 0.1396703296703297,
+        "boundary_precision": 0.07587153772683859,
+        "boundary_recall": 0.8777624309392266,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": false,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          0,
+          1
+        ],
+        "pred_edges": [],
+        "gt_edges": [],
+        "has_stacking": false,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_02_partial_overlap_25",
+        "miou": 0.8037219933135381,
+        "iou_table": 0.9852546375146501,
+        "iou_object": 0.6221893491124261,
+        "latency_ms": 38594.356536865234,
+        "confusion_matrix": [
+          [
+            341306,
+            2
+          ],
+          [
+            5106,
+            8412
+          ]
+        ],
+        "boundary_f1": 0.13048342460107165,
+        "boundary_precision": 0.07108487842432797,
+        "boundary_recall": 0.7936962750716332,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_03_partial_overlap_50",
+        "miou": 0.8142878967272713,
+        "iou_table": 0.9873737955834216,
+        "iou_object": 0.641201997871121,
+        "latency_ms": 38192.8813457489,
+        "confusion_matrix": [
+          [
+            342674,
+            0
+          ],
+          [
+            4382,
+            7831
+          ]
+        ],
+        "boundary_f1": 0.11525737726611088,
+        "boundary_precision": 0.061799347239960264,
+        "boundary_recall": 0.8539215686274509,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_04_partial_overlap_75",
+        "miou": 0.8128318943407726,
+        "iou_table": 0.9891515794910051,
+        "iou_object": 0.6365122091905403,
+        "latency_ms": 38763.319969177246,
+        "confusion_matrix": [
+          [
+            344749,
+            0
+          ],
+          [
+            3781,
+            6621
+          ]
+        ],
+        "boundary_f1": 0.1215880893300248,
+        "boundary_precision": 0.06535511837279093,
+        "boundary_recall": 0.8711111111111111,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_05_full_stack_centered",
+        "miou": 0.8127068734643434,
+        "iou_table": 0.9899992553855671,
+        "iou_object": 0.6354144915431197,
+        "latency_ms": 37668.99299621582,
+        "confusion_matrix": [
+          [
+            345682,
+            0
+          ],
+          [
+            3492,
+            6086
+          ]
+        ],
+        "boundary_f1": 0.12475797626062801,
+        "boundary_precision": 0.06717432689692684,
+        "boundary_recall": 0.8738207547169812,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_06_full_stack_offset",
+        "miou": 0.8137437458404599,
+        "iou_table": 0.989646400188143,
+        "iou_object": 0.6378410914927769,
+        "latency_ms": 41360.96429824829,
+        "confusion_matrix": [
+          [
+            345061,
+            0
+          ],
+          [
+            3610,
+            6358
+          ]
+        ],
+        "boundary_f1": 0.11771354755368965,
+        "boundary_precision": 0.0633362293657689,
+        "boundary_recall": 0.8321917808219178,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_07_cross_stack",
+        "miou": 0.8126987603078999,
+        "iou_table": 0.9894010670644254,
+        "iou_object": 0.6359964535513742,
+        "latency_ms": 39783.67495536804,
+        "confusion_matrix": [
+          [
+            344925,
+            0
+          ],
+          [
+            3695,
+            6456
+          ]
+        ],
+        "boundary_f1": 0.12064449559488848,
+        "boundary_precision": 0.06489625138758433,
+        "boundary_recall": 0.8558558558558559,
+        "instance_count_correct": false,
+        "pred_instances": 3,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_08_aligned_stack",
+        "miou": 0.816939185297296,
+        "iou_table": 0.9901064226499526,
+        "iou_object": 0.6437719479446395,
+        "latency_ms": 39376.46675109863,
+        "confusion_matrix": [
+          [
+            345161,
+            0
+          ],
+          [
+            3449,
+            6233
+          ]
+        ],
+        "boundary_f1": 0.14720690481898827,
+        "boundary_precision": 0.08087460484720758,
+        "boundary_recall": 0.8186666666666667,
+        "instance_count_correct": false,
+        "pred_instances": 3,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      }
+    ],
+    "summary": {
+      "algo_name": "Ours (HierarchyReasoner)",
+      "algo_key": "ours_hierarchy",
+      "category": "ours",
+      "description": "空间关系分析 + XY重叠检测 + 拓扑排序",
+      "avg_miou": 0.8123147414661411,
+      "avg_obj_iou": 0.6364277080979519,
+      "avg_boundary_f1": 0.12716526813696644,
+      "avg_latency_ms": 39072.31506705284,
+      "total_confusion_matrix": [
+        [
+          2749656,
+          3
+        ],
+        [
+          32805,
+          57342
+        ]
+      ],
+      "instance_count_accuracy": 0.75,
+      "avg_edge_accuracy": 1.0,
+      "avg_edge_precision": 1.0,
+      "avg_edge_recall": 1.0,
+      "avg_edge_f1": 1.0,
+      "grasp_order_accuracy": 1.0,
+      "overall_edge_precision": 1.0,
+      "overall_edge_recall": 1.0,
+      "overall_edge_f1": 1.0,
+      "overall_grasp_accuracy": 0.875,
+      "difficulty_breakdown": {
+        "unknown": {
+          "count": 7,
+          "edge_f1": 1.0,
+          "grasp_acc": 1.0
+        }
+      }
+    }
+  },
+  "simple_zsort": {
+    "config_name": "Simple Z-Sort",
+    "config_key": "simple_zsort",
+    "per_scene": [
+      {
+        "scene": "scene_01_side_by_side",
+        "miou": 0.8112193529325535,
+        "iou_table": 0.9846525767226404,
+        "iou_object": 0.6377861291424667,
+        "latency_ms": 43270.00856399536,
+        "confusion_matrix": [
+          [
+            340099,
+            0
+          ],
+          [
+            5301,
+            9334
+          ]
+        ],
+        "boundary_f1": 0.13803359955935005,
+        "boundary_precision": 0.07499850362123661,
+        "boundary_recall": 0.8653314917127072,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 0.0,
+        "edge_recall": 0.0,
+        "edge_f1": 0.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          0,
+          1
+        ],
+        "gt_grasp_order": [
+          0,
+          1
+        ],
+        "pred_edges": [
+          [
+            0,
+            1
+          ]
+        ],
+        "gt_edges": [],
+        "has_stacking": false,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_02_partial_overlap_25",
+        "miou": 0.8090738442276053,
+        "iou_table": 0.9856500921235785,
+        "iou_object": 0.6324975963316323,
+        "latency_ms": 40501.702308654785,
+        "confusion_matrix": [
+          [
+            341305,
+            3
+          ],
+          [
+            4966,
+            8552
+          ]
+        ],
+        "boundary_f1": 0.13139720205418806,
+        "boundary_precision": 0.07159858475394017,
+        "boundary_recall": 0.7972779369627507,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_03_partial_overlap_50",
+        "miou": 0.8102634979915231,
+        "iou_table": 0.9871035946893427,
+        "iou_object": 0.6334234012937034,
+        "latency_ms": 38892.183780670166,
+        "confusion_matrix": [
+          [
+            342674,
+            0
+          ],
+          [
+            4477,
+            7736
+          ]
+        ],
+        "boundary_f1": 0.11397253037506602,
+        "boundary_precision": 0.061101670914755025,
+        "boundary_recall": 0.846078431372549,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_04_partial_overlap_75",
+        "miou": 0.8101101374445362,
+        "iou_table": 0.9889955104207009,
+        "iou_object": 0.6312247644683715,
+        "latency_ms": 40833.518743515015,
+        "confusion_matrix": [
+          [
+            344749,
+            0
+          ],
+          [
+            3836,
+            6566
+          ]
+        ],
+        "boundary_f1": 0.1257461818745639,
+        "boundary_precision": 0.0675889657471456,
+        "boundary_recall": 0.9011111111111111,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_05_full_stack_centered",
+        "miou": 0.8110982592563964,
+        "iou_table": 0.9899142048773782,
+        "iou_object": 0.6322823136354145,
+        "latency_ms": 42095.0493812561,
+        "confusion_matrix": [
+          [
+            345682,
+            0
+          ],
+          [
+            3522,
+            6056
+          ]
+        ],
+        "boundary_f1": 0.12211554657234294,
+        "boundary_precision": 0.06575367313622348,
+        "boundary_recall": 0.8549528301886793,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_06_full_stack_offset",
+        "miou": 0.8117321443934173,
+        "iou_table": 0.9895357173582633,
+        "iou_object": 0.6339285714285714,
+        "latency_ms": 38694.46539878845,
+        "confusion_matrix": [
+          [
+            345061,
+            0
+          ],
+          [
+            3649,
+            6319
+          ]
+        ],
+        "boundary_f1": 0.11990639877350118,
+        "boundary_precision": 0.06451332812364331,
+        "boundary_recall": 0.8481735159817352,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_07_cross_stack",
+        "miou": 0.8123947089182981,
+        "iou_table": 0.9893840390561806,
+        "iou_object": 0.6354053787804157,
+        "latency_ms": 36710.99925041199,
+        "confusion_matrix": [
+          [
+            344925,
+            0
+          ],
+          [
+            3701,
+            6450
+          ]
+        ],
+        "boundary_f1": 0.12363290537327627,
+        "boundary_precision": 0.06649616368286446,
+        "boundary_recall": 0.8783783783783784,
+        "instance_count_correct": false,
+        "pred_instances": 3,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_08_aligned_stack",
+        "miou": 0.8122697344203951,
+        "iou_table": 0.9898565520880532,
+        "iou_object": 0.634682916752737,
+        "latency_ms": 33764.94836807251,
+        "confusion_matrix": [
+          [
+            345161,
+            0
+          ],
+          [
+            3537,
+            6145
+          ]
+        ],
+        "boundary_f1": 0.1429716300689213,
+        "boundary_precision": 0.07856954109046067,
+        "boundary_recall": 0.7928888888888889,
+        "instance_count_correct": false,
+        "pred_instances": 3,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      }
+    ],
+    "summary": {
+      "algo_name": "Simple Z-Sort",
+      "algo_key": "simple_zsort",
+      "category": "baseline",
+      "description": "仅按物体中心Z轴高度排序",
+      "avg_miou": 0.8110202099480905,
+      "avg_obj_iou": 0.6339038839791641,
+      "avg_boundary_f1": 0.12722199933140121,
+      "avg_latency_ms": 39345.35947442055,
+      "total_confusion_matrix": [
+        [
+          2749656,
+          3
+        ],
+        [
+          32989,
+          57158
+        ]
+      ],
+      "instance_count_accuracy": 0.75,
+      "avg_edge_accuracy": 1.0,
+      "avg_edge_precision": 1.0,
+      "avg_edge_recall": 1.0,
+      "avg_edge_f1": 1.0,
+      "grasp_order_accuracy": 1.0,
+      "overall_edge_precision": 0.875,
+      "overall_edge_recall": 0.875,
+      "overall_edge_f1": 0.875,
+      "overall_grasp_accuracy": 1.0,
+      "difficulty_breakdown": {
+        "unknown": {
+          "count": 7,
+          "edge_f1": 1.0,
+          "grasp_acc": 1.0
+        }
+      }
+    }
+  },
+  "bbox_iou": {
+    "config_name": "BBox IoU-based",
+    "config_key": "bbox_iou",
+    "per_scene": [
+      {
+        "scene": "scene_01_side_by_side",
+        "miou": 0.811468483511597,
+        "iou_table": 0.9846725324485441,
+        "iou_object": 0.6382644345746498,
+        "latency_ms": 38409.57999229431,
+        "confusion_matrix": [
+          [
+            340099,
+            0
+          ],
+          [
+            5294,
+            9341
+          ]
+        ],
+        "boundary_f1": 0.13634859349145062,
+        "boundary_precision": 0.07409183551132957,
+        "boundary_recall": 0.8535911602209945,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": false,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          0,
+          1
+        ],
+        "pred_edges": [],
+        "gt_edges": [],
+        "has_stacking": false,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_02_partial_overlap_25",
+        "miou": 0.8067806321038613,
+        "iou_table": 0.9854822642816926,
+        "iou_object": 0.62807899992603,
+        "latency_ms": 38224.21050071716,
+        "confusion_matrix": [
+          [
+            341307,
+            1
+          ],
+          [
+            5027,
+            8491
+          ]
+        ],
+        "boundary_f1": 0.1290703161868806,
+        "boundary_precision": 0.07032656209822577,
+        "boundary_recall": 0.7836676217765043,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 0.0,
+        "edge_recall": 0.0,
+        "edge_f1": 0.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_03_partial_overlap_50",
+        "miou": 0.8117885246000074,
+        "iou_table": 0.98720596920329,
+        "iou_object": 0.6363710799967248,
+        "latency_ms": 38938.23552131653,
+        "confusion_matrix": [
+          [
+            342674,
+            0
+          ],
+          [
+            4441,
+            7772
+          ]
+        ],
+        "boundary_f1": 0.11345454545454546,
+        "boundary_precision": 0.060829493087557605,
+        "boundary_recall": 0.8411764705882353,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_04_partial_overlap_75",
+        "miou": 0.8069430331400298,
+        "iou_table": 0.9888139647611208,
+        "iou_object": 0.6250721015189387,
+        "latency_ms": 41590.70587158203,
+        "confusion_matrix": [
+          [
+            344749,
+            0
+          ],
+          [
+            3900,
+            6502
+          ]
+        ],
+        "boundary_f1": 0.12376084262701363,
+        "boundary_precision": 0.06651681651681651,
+        "boundary_recall": 0.8877777777777778,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_05_full_stack_centered",
+        "miou": 0.8141546324997107,
+        "iou_table": 0.9900758133393671,
+        "iou_object": 0.6382334516600543,
+        "latency_ms": 44774.091720581055,
+        "confusion_matrix": [
+          [
+            345682,
+            0
+          ],
+          [
+            3465,
+            6113
+          ]
+        ],
+        "boundary_f1": 0.1284249453689696,
+        "boundary_precision": 0.06914027149321267,
+        "boundary_recall": 0.9009433962264151,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_06_full_stack_offset",
+        "miou": 0.8128153128650699,
+        "iou_table": 0.9895953127285346,
+        "iou_object": 0.6360353130016051,
+        "latency_ms": 42444.868326187134,
+        "confusion_matrix": [
+          [
+            345061,
+            0
+          ],
+          [
+            3628,
+            6340
+          ]
+        ],
+        "boundary_f1": 0.11994196356601645,
+        "boundary_precision": 0.06452732003469211,
+        "boundary_recall": 0.8493150684931506,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_07_cross_stack",
+        "miou": 0.8115839066453616,
+        "iou_table": 0.9893386338995301,
+        "iou_object": 0.633829179391193,
+        "latency_ms": 43781.224489212036,
+        "confusion_matrix": [
+          [
+            344925,
+            0
+          ],
+          [
+            3717,
+            6434
+          ]
+        ],
+        "boundary_f1": 0.12100039698292972,
+        "boundary_precision": 0.06508926283420176,
+        "boundary_recall": 0.8581081081081081,
+        "instance_count_correct": false,
+        "pred_instances": 3,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 0.0,
+        "edge_recall": 0.0,
+        "edge_f1": 0.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": false,
+        "pred_grasp_order": [
+          0,
+          1
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_08_aligned_stack",
+        "miou": 0.8108901360010234,
+        "iou_table": 0.9897827508287356,
+        "iou_object": 0.6319975211733113,
+        "latency_ms": 39392.35162734985,
+        "confusion_matrix": [
+          [
+            345161,
+            0
+          ],
+          [
+            3563,
+            6119
+          ]
+        ],
+        "boundary_f1": 0.14353299655200064,
+        "boundary_precision": 0.0788824255244139,
+        "boundary_recall": 0.7955555555555556,
+        "instance_count_correct": false,
+        "pred_instances": 3,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      }
+    ],
+    "summary": {
+      "algo_name": "BBox IoU-based",
+      "algo_key": "bbox_iou",
+      "category": "baseline",
+      "description": "基于XY包围盒IoU判定堆叠关系",
+      "avg_miou": 0.8108030826708326,
+      "avg_obj_iou": 0.6334852601553134,
+      "avg_boundary_f1": 0.12694182502872584,
+      "avg_latency_ms": 40944.408506155014,
+      "total_confusion_matrix": [
+        [
+          2749658,
+          1
+        ],
+        [
+          33035,
+          57112
+        ]
+      ],
+      "instance_count_accuracy": 0.75,
+      "avg_edge_accuracy": 0.7142857142857143,
+      "avg_edge_precision": 0.7142857142857143,
+      "avg_edge_recall": 0.7142857142857143,
+      "avg_edge_f1": 0.7142857142857143,
+      "grasp_order_accuracy": 0.8571428571428571,
+      "overall_edge_precision": 0.75,
+      "overall_edge_recall": 0.75,
+      "overall_edge_f1": 0.75,
+      "overall_grasp_accuracy": 0.75,
+      "difficulty_breakdown": {
+        "unknown": {
+          "count": 7,
+          "edge_f1": 0.7142857142857143,
+          "grasp_acc": 0.8571428571428571
+        }
+      }
+    }
+  },
+  "height_threshold": {
+    "config_name": "Height Threshold",
+    "config_key": "height_threshold",
+    "per_scene": [
+      {
+        "scene": "scene_01_side_by_side",
+        "miou": 0.8118955654452131,
+        "iou_table": 0.9847067441463195,
+        "iou_object": 0.6390843867441066,
+        "latency_ms": 39006.20913505554,
+        "confusion_matrix": [
+          [
+            340099,
+            0
+          ],
+          [
+            5282,
+            9353
+          ]
+        ],
+        "boundary_f1": 0.1373423646676579,
+        "boundary_precision": 0.07462150679193345,
+        "boundary_recall": 0.8611878453038674,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 0.0,
+        "edge_recall": 0.0,
+        "edge_f1": 0.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          0,
+          1
+        ],
+        "gt_grasp_order": [
+          0,
+          1
+        ],
+        "pred_edges": [
+          [
+            0,
+            1
+          ]
+        ],
+        "gt_edges": [],
+        "has_stacking": false,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_02_partial_overlap_25",
+        "miou": 0.8088682466492554,
+        "iou_table": 0.9856359015825343,
+        "iou_object": 0.6321005917159763,
+        "latency_ms": 35972.3904132843,
+        "confusion_matrix": [
+          [
+            341306,
+            2
+          ],
+          [
+            4972,
+            8546
+          ]
+        ],
+        "boundary_f1": 0.13261880925740535,
+        "boundary_precision": 0.07224895733076676,
+        "boundary_recall": 0.8065902578796562,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_03_partial_overlap_50",
+        "miou": 0.8122121449866913,
+        "iou_table": 0.9872344103369297,
+        "iou_object": 0.6371898796364529,
+        "latency_ms": 35335.12783050537,
+        "confusion_matrix": [
+          [
+            342674,
+            0
+          ],
+          [
+            4431,
+            7782
+          ]
+        ],
+        "boundary_f1": 0.11415736275351787,
+        "boundary_precision": 0.06120280512856839,
+        "boundary_recall": 0.8470588235294118,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_04_partial_overlap_75",
+        "miou": 0.8130298412575918,
+        "iou_table": 0.9891629318903037,
+        "iou_object": 0.6368967506248798,
+        "latency_ms": 34418.21312904358,
+        "confusion_matrix": [
+          [
+            344749,
+            0
+          ],
+          [
+            3777,
+            6625
+          ]
+        ],
+        "boundary_f1": 0.12304824050337917,
+        "boundary_precision": 0.06614883487847657,
+        "boundary_recall": 0.88,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_05_full_stack_centered",
+        "miou": 0.8144763575338013,
+        "iou_table": 0.9900928278260073,
+        "iou_object": 0.6388598872415954,
+        "latency_ms": 36200.97827911377,
+        "confusion_matrix": [
+          [
+            345682,
+            0
+          ],
+          [
+            3459,
+            6119
+          ]
+        ],
+        "boundary_f1": 0.12448412364187654,
+        "boundary_precision": 0.0670294784580499,
+        "boundary_recall": 0.8714622641509434,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_06_full_stack_offset",
+        "miou": 0.8103395044887294,
+        "iou_table": 0.9894591052856451,
+        "iou_object": 0.6312199036918138,
+        "latency_ms": 36587.571144104004,
+        "confusion_matrix": [
+          [
+            345061,
+            0
+          ],
+          [
+            3676,
+            6292
+          ]
+        ],
+        "boundary_f1": 0.11942944636957047,
+        "boundary_precision": 0.0642504118616145,
+        "boundary_recall": 0.8458904109589042,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_07_cross_stack",
+        "miou": 0.8128507861126008,
+        "iou_table": 0.989409581288348,
+        "iou_object": 0.6362919909368535,
+        "latency_ms": 46167.55437850952,
+        "confusion_matrix": [
+          [
+            344925,
+            0
+          ],
+          [
+            3692,
+            6459
+          ]
+        ],
+        "boundary_f1": 0.12554352122697446,
+        "boundary_precision": 0.06751126604880538,
+        "boundary_recall": 0.8941441441441441,
+        "instance_count_correct": false,
+        "pred_instances": 3,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_08_aligned_stack",
+        "miou": 0.8121105497065524,
+        "iou_table": 0.9898480359964554,
+        "iou_object": 0.6343730634166495,
+        "latency_ms": 43224.149227142334,
+        "confusion_matrix": [
+          [
+            345161,
+            0
+          ],
+          [
+            3540,
+            6142
+          ]
+        ],
+        "boundary_f1": 0.1455098447254682,
+        "boundary_precision": 0.07995426158853021,
+        "boundary_recall": 0.808,
+        "instance_count_correct": false,
+        "pred_instances": 3,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      }
+    ],
+    "summary": {
+      "algo_name": "Height Threshold",
+      "algo_key": "height_threshold",
+      "category": "baseline",
+      "description": "基于Z轴高度差阈值判定堆叠",
+      "avg_miou": 0.8119728745225545,
+      "avg_obj_iou": 0.6357520567510411,
+      "avg_boundary_f1": 0.12776671414323126,
+      "avg_latency_ms": 38364.0241920948,
+      "total_confusion_matrix": [
+        [
+          2749657,
+          2
+        ],
+        [
+          32829,
+          57318
+        ]
+      ],
+      "instance_count_accuracy": 0.75,
+      "avg_edge_accuracy": 1.0,
+      "avg_edge_precision": 1.0,
+      "avg_edge_recall": 1.0,
+      "avg_edge_f1": 1.0,
+      "grasp_order_accuracy": 1.0,
+      "overall_edge_precision": 0.875,
+      "overall_edge_recall": 0.875,
+      "overall_edge_f1": 0.875,
+      "overall_grasp_accuracy": 1.0,
+      "difficulty_breakdown": {
+        "unknown": {
+          "count": 7,
+          "edge_f1": 1.0,
+          "grasp_acc": 1.0
+        }
+      }
+    }
+  },
+  "centroid_proximity": {
+    "config_name": "Centroid Proximity",
+    "config_key": "centroid_proximity",
+    "per_scene": [
+      {
+        "scene": "scene_01_side_by_side",
+        "miou": 0.8089416063873089,
+        "iou_table": 0.9844701618692541,
+        "iou_object": 0.6334130509053638,
+        "latency_ms": 43641.637325286865,
+        "confusion_matrix": [
+          [
+            340099,
+            0
+          ],
+          [
+            5365,
+            9270
+          ]
+        ],
+        "boundary_f1": 0.1321629678701557,
+        "boundary_precision": 0.0718228729149166,
+        "boundary_recall": 0.8266574585635359,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": false,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          0,
+          1
+        ],
+        "pred_edges": [],
+        "gt_edges": [],
+        "has_stacking": false,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_02_partial_overlap_25",
+        "miou": 0.8134636987603595,
+        "iou_table": 0.985977623129122,
+        "iou_object": 0.6409497743915971,
+        "latency_ms": 42202.68774032593,
+        "confusion_matrix": [
+          [
+            341307,
+            1
+          ],
+          [
+            4853,
+            8665
+          ]
+        ],
+        "boundary_f1": 0.13354531001589826,
+        "boundary_precision": 0.07275293513825624,
+        "boundary_recall": 0.8123209169054442,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 0.0,
+        "edge_recall": 0.0,
+        "edge_f1": 0.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_03_partial_overlap_50",
+        "miou": 0.8071711155079122,
+        "iou_table": 0.9868960670921365,
+        "iou_object": 0.6274461639236879,
+        "latency_ms": 40015.0260925293,
+        "confusion_matrix": [
+          [
+            342674,
+            0
+          ],
+          [
+            4550,
+            7663
+          ]
+        ],
+        "boundary_f1": 0.111133161341536,
+        "boundary_precision": 0.05958714620131943,
+        "boundary_recall": 0.8235294117647058,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_04_partial_overlap_75",
+        "miou": 0.8127329209312212,
+        "iou_table": 0.9891459033890718,
+        "iou_object": 0.6363199384733705,
+        "latency_ms": 41485.68773269653,
+        "confusion_matrix": [
+          [
+            344749,
+            0
+          ],
+          [
+            3783,
+            6619
+          ]
+        ],
+        "boundary_f1": 0.12352576039726877,
+        "boundary_precision": 0.06639973306639974,
+        "boundary_recall": 0.8844444444444445,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_05_full_stack_centered",
+        "miou": 0.8117417040627457,
+        "iou_table": 0.9899482233269948,
+        "iou_object": 0.6335351847984966,
+        "latency_ms": 40622.96271324158,
+        "confusion_matrix": [
+          [
+            345682,
+            0
+          ],
+          [
+            3510,
+            6068
+          ]
+        ],
+        "boundary_f1": 0.12892395501091153,
+        "boundary_precision": 0.0694017711910356,
+        "boundary_recall": 0.9056603773584906,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_06_full_stack_offset",
+        "miou": 0.8142079633171941,
+        "iou_table": 0.9896719458960254,
+        "iou_object": 0.6387439807383628,
+        "latency_ms": 45019.60754394531,
+        "confusion_matrix": [
+          [
+            345061,
+            0
+          ],
+          [
+            3601,
+            6367
+          ]
+        ],
+        "boundary_f1": 0.12135844197650089,
+        "boundary_precision": 0.06528138528138529,
+        "boundary_recall": 0.860730593607306,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_07_cross_stack",
+        "miou": 0.8149791550725407,
+        "iou_table": 0.9895287958115183,
+        "iou_object": 0.6404295143335632,
+        "latency_ms": 46045.90892791748,
+        "confusion_matrix": [
+          [
+            344925,
+            0
+          ],
+          [
+            3650,
+            6501
+          ]
+        ],
+        "boundary_f1": 0.1210484511517077,
+        "boundary_precision": 0.06511707400444368,
+        "boundary_recall": 0.8581081081081081,
+        "instance_count_correct": false,
+        "pred_instances": 3,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_08_aligned_stack",
+        "miou": 0.8094574819274907,
+        "iou_table": 0.9897061227064582,
+        "iou_object": 0.629208841148523,
+        "latency_ms": 45637.531042099,
+        "confusion_matrix": [
+          [
+            345161,
+            0
+          ],
+          [
+            3590,
+            6092
+          ]
+        ],
+        "boundary_f1": 0.1438987260636167,
+        "boundary_precision": 0.07907713983797111,
+        "boundary_recall": 0.7982222222222223,
+        "instance_count_correct": false,
+        "pred_instances": 3,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      }
+    ],
+    "summary": {
+      "algo_name": "Centroid Proximity",
+      "algo_key": "centroid_proximity",
+      "category": "baseline",
+      "description": "基于质心XY邻近度判定堆叠",
+      "avg_miou": 0.8115869557458466,
+      "avg_obj_iou": 0.6350058060891206,
+      "avg_boundary_f1": 0.12694959672844944,
+      "avg_latency_ms": 43083.88113975525,
+      "total_confusion_matrix": [
+        [
+          2749658,
+          1
+        ],
+        [
+          32902,
+          57245
+        ]
+      ],
+      "instance_count_accuracy": 0.75,
+      "avg_edge_accuracy": 0.8571428571428571,
+      "avg_edge_precision": 0.8571428571428571,
+      "avg_edge_recall": 0.8571428571428571,
+      "avg_edge_f1": 0.8571428571428571,
+      "grasp_order_accuracy": 1.0,
+      "overall_edge_precision": 0.875,
+      "overall_edge_recall": 0.875,
+      "overall_edge_f1": 0.875,
+      "overall_grasp_accuracy": 0.875,
+      "difficulty_breakdown": {
+        "unknown": {
+          "count": 7,
+          "edge_f1": 0.8571428571428571,
+          "grasp_acc": 1.0
+        }
+      }
+    }
+  },
+  "overlap_z": {
+    "config_name": "Overlap + Z-Sort",
+    "config_key": "overlap_z",
+    "per_scene": [
+      {
+        "scene": "scene_01_side_by_side",
+        "miou": 0.8108634528068904,
+        "iou_table": 0.9846240699458615,
+        "iou_object": 0.6371028356679194,
+        "latency_ms": 42934.75580215454,
+        "confusion_matrix": [
+          [
+            340099,
+            0
+          ],
+          [
+            5311,
+            9324
+          ]
+        ],
+        "boundary_f1": 0.13583034976590472,
+        "boundary_precision": 0.07380140061052254,
+        "boundary_recall": 0.8515193370165746,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": false,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          0,
+          1
+        ],
+        "pred_edges": [],
+        "gt_edges": [],
+        "has_stacking": false,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_02_partial_overlap_25",
+        "miou": 0.8109152726346784,
+        "iou_table": 0.9857897108263919,
+        "iou_object": 0.6360408344429649,
+        "latency_ms": 47556.78296089172,
+        "confusion_matrix": [
+          [
+            341308,
+            0
+          ],
+          [
+            4920,
+            8598
+          ]
+        ],
+        "boundary_f1": 0.12946665879156577,
+        "boundary_precision": 0.0705503701319601,
+        "boundary_recall": 0.7851002865329513,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 0.0,
+        "edge_recall": 0.0,
+        "edge_f1": 0.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_03_partial_overlap_50",
+        "miou": 0.8112378193222121,
+        "iou_table": 0.987168998179346,
+        "iou_object": 0.6353066404650782,
+        "latency_ms": 45637.26019859314,
+        "confusion_matrix": [
+          [
+            342674,
+            0
+          ],
+          [
+            4454,
+            7759
+          ]
+        ],
+        "boundary_f1": 0.11454677878567172,
+        "boundary_precision": 0.061421572108215576,
+        "boundary_recall": 0.8480392156862745,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_04_partial_overlap_75",
+        "miou": 0.8129803545161723,
+        "iou_table": 0.9891600937660497,
+        "iou_object": 0.636800615266295,
+        "latency_ms": 45015.70129394531,
+        "confusion_matrix": [
+          [
+            344749,
+            0
+          ],
+          [
+            3778,
+            6624
+          ]
+        ],
+        "boundary_f1": 0.12294318534616579,
+        "boundary_precision": 0.06608811748998665,
+        "boundary_recall": 0.88,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_05_full_stack_centered",
+        "miou": 0.8075057139013596,
+        "iou_table": 0.9897243114945129,
+        "iou_object": 0.6252871163082063,
+        "latency_ms": 53779.74724769592,
+        "confusion_matrix": [
+          [
+            345682,
+            0
+          ],
+          [
+            3589,
+            5989
+          ]
+        ],
+        "boundary_f1": 0.12402450281111017,
+        "boundary_precision": 0.06676303189086638,
+        "boundary_recall": 0.8714622641509434,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_06_full_stack_offset",
+        "miou": 0.8100816088609908,
+        "iou_table": 0.9894449191666045,
+        "iou_object": 0.6307182985553772,
+        "latency_ms": 48670.997619628906,
+        "confusion_matrix": [
+          [
+            345061,
+            0
+          ],
+          [
+            3681,
+            6287
+          ]
+        ],
+        "boundary_f1": 0.11955208249415934,
+        "boundary_precision": 0.06431481320967322,
+        "boundary_recall": 0.8470319634703196,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_07_cross_stack",
+        "miou": 0.8111278312825212,
+        "iou_table": 0.9893130953302873,
+        "iou_object": 0.6329425672347552,
+        "latency_ms": 46108.604431152344,
+        "confusion_matrix": [
+          [
+            344925,
+            0
+          ],
+          [
+            3726,
+            6425
+          ]
+        ],
+        "boundary_f1": 0.12025065439835013,
+        "boundary_precision": 0.06468128679921495,
+        "boundary_recall": 0.8536036036036037,
+        "instance_count_correct": false,
+        "pred_instances": 3,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 0.0,
+        "edge_recall": 0.0,
+        "edge_f1": 0.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": false,
+        "pred_grasp_order": [
+          0,
+          1
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_08_aligned_stack",
+        "miou": 0.8093513596395211,
+        "iou_table": 0.9897004470212443,
+        "iou_object": 0.6290022722577979,
+        "latency_ms": 46090.137243270874,
+        "confusion_matrix": [
+          [
+            345161,
+            0
+          ],
+          [
+            3592,
+            6090
+          ]
+        ],
+        "boundary_f1": 0.1394080372182562,
+        "boundary_precision": 0.07661788044436607,
+        "boundary_recall": 0.7724444444444445,
+        "instance_count_correct": false,
+        "pred_instances": 3,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      }
+    ],
+    "summary": {
+      "algo_name": "Overlap + Z-Sort",
+      "algo_key": "overlap_z",
+      "category": "baseline",
+      "description": "XY重叠检测 + Z排序 (简化版)",
+      "avg_miou": 0.8105079266205433,
+      "avg_obj_iou": 0.6329001475247993,
+      "avg_boundary_f1": 0.125752781201398,
+      "avg_latency_ms": 46974.248349666595,
+      "total_confusion_matrix": [
+        [
+          2749659,
+          0
+        ],
+        [
+          33051,
+          57096
+        ]
+      ],
+      "instance_count_accuracy": 0.75,
+      "avg_edge_accuracy": 0.7142857142857143,
+      "avg_edge_precision": 0.7142857142857143,
+      "avg_edge_recall": 0.7142857142857143,
+      "avg_edge_f1": 0.7142857142857143,
+      "grasp_order_accuracy": 0.8571428571428571,
+      "overall_edge_precision": 0.75,
+      "overall_edge_recall": 0.75,
+      "overall_edge_f1": 0.75,
+      "overall_grasp_accuracy": 0.75,
+      "difficulty_breakdown": {
+        "unknown": {
+          "count": 7,
+          "edge_f1": 0.7142857142857143,
+          "grasp_acc": 0.8571428571428571
+        }
+      }
+    }
+  },
+  "ransac_zsort": {
+    "config_name": "RANSAC + Z-Sort",
+    "config_key": "ransac_zsort",
+    "per_scene": [
+      {
+        "scene": "scene_01_side_by_side",
+        "miou": 0.97516995208157,
+        "iou_table": 0.9978535724786828,
+        "iou_object": 0.9524863316844572,
+        "latency_ms": 1566.8573379516602,
+        "confusion_matrix": [
+          [
+            339370,
+            729
+          ],
+          [
+            1,
+            14634
+          ]
+        ],
+        "boundary_f1": 0.157644824311491,
+        "boundary_precision": 0.08575943596912418,
+        "boundary_recall": 0.9744475138121547,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 0.0,
+        "edge_recall": 0.0,
+        "edge_f1": 0.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          0,
+          1
+        ],
+        "gt_grasp_order": [
+          0,
+          1
+        ],
+        "pred_edges": [
+          [
+            0,
+            1
+          ]
+        ],
+        "gt_edges": [],
+        "has_stacking": false,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_02_partial_overlap_25",
+        "miou": 0.9837801560844104,
+        "iou_table": 0.9987315741370018,
+        "iou_object": 0.9688287380318191,
+        "latency_ms": 109.41362380981445,
+        "confusion_matrix": [
+          [
+            340935,
+            373
+          ],
+          [
+            60,
+            13458
+          ]
+        ],
+        "boundary_f1": 0.17318969044047458,
+        "boundary_precision": 0.09570459683496609,
+        "boundary_recall": 0.9097421203438395,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_03_partial_overlap_50",
+        "miou": 0.9721408571844949,
+        "iou_table": 0.9979776697385854,
+        "iou_object": 0.9463040446304045,
+        "latency_ms": 89.05196189880371,
+        "confusion_matrix": [
+          [
+            341981,
+            693
+          ],
+          [
+            0,
+            12213
+          ]
+        ],
+        "boundary_f1": 0.11941025953454369,
+        "boundary_precision": 0.06366116668832013,
+        "boundary_recall": 0.9607843137254902,
+        "instance_count_correct": false,
+        "pred_instances": 3,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_04_partial_overlap_75",
+        "miou": 0.9769769909419814,
+        "iou_table": 0.9985902787245213,
+        "iou_object": 0.9553637031594416,
+        "latency_ms": 93.07003021240234,
+        "confusion_matrix": [
+          [
+            344263,
+            486
+          ],
+          [
+            0,
+            10402
+          ]
+        ],
+        "boundary_f1": 0.13545940088242123,
+        "boundary_precision": 0.0728013977868375,
+        "boundary_recall": 0.9722222222222222,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_05_full_stack_centered",
+        "miou": 0.975102848230216,
+        "iou_table": 0.9985911907475656,
+        "iou_object": 0.9516145057128663,
+        "latency_ms": 85.07633209228516,
+        "confusion_matrix": [
+          [
+            345195,
+            487
+          ],
+          [
+            0,
+            9578
+          ]
+        ],
+        "boundary_f1": 0.13391136801541428,
+        "boundary_precision": 0.07184700206753963,
+        "boundary_recall": 0.9834905660377359,
+        "instance_count_correct": true,
+        "pred_instances": 2,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_06_full_stack_offset",
+        "miou": 0.9526638445406692,
+        "iou_table": 0.9970816754139123,
+        "iou_object": 0.908246013667426,
+        "latency_ms": 94.12169456481934,
+        "confusion_matrix": [
+          [
+            344054,
+            1007
+          ],
+          [
+            0,
+            9968
+          ]
+        ],
+        "boundary_f1": 0.09729854804188119,
+        "boundary_precision": 0.05124611541039547,
+        "boundary_recall": 0.9600456621004566,
+        "instance_count_correct": false,
+        "pred_instances": 4,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_07_cross_stack",
+        "miou": 0.9707726590098626,
+        "iou_table": 0.9982314996013626,
+        "iou_object": 0.9433138184183626,
+        "latency_ms": 97.09596633911133,
+        "confusion_matrix": [
+          [
+            344315,
+            610
+          ],
+          [
+            0,
+            10151
+          ]
+        ],
+        "boundary_f1": 0.12464265294453974,
+        "boundary_precision": 0.06654456654456654,
+        "boundary_recall": 0.9819819819819819,
+        "instance_count_correct": false,
+        "pred_instances": 3,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_08_aligned_stack",
+        "miou": 0.9567975402195275,
+        "iou_table": 0.9974330819530596,
+        "iou_object": 0.9161619984859954,
+        "latency_ms": 92.59724617004395,
+        "confusion_matrix": [
+          [
+            344275,
+            886
+          ],
+          [
+            0,
+            9682
+          ]
+        ],
+        "boundary_f1": 0.1252855596970061,
+        "boundary_precision": 0.06718679476433038,
+        "boundary_recall": 0.9262222222222222,
+        "instance_count_correct": false,
+        "pred_instances": 4,
+        "gt_instances": 2,
+        "edge_accuracy": 1.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 1,
+        "edge_total": 1,
+        "grasp_correct": true,
+        "pred_grasp_order": [
+          1,
+          0
+        ],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      }
+    ],
+    "summary": {
+      "algo_name": "RANSAC + Z-Sort",
+      "algo_key": "ransac_zsort",
+      "category": "traditional",
+      "description": "RANSAC平面拟合分割 + Z轴排序",
+      "avg_miou": 0.9704256060365914,
+      "avg_obj_iou": 0.9427898942238466,
+      "avg_boundary_f1": 0.13335528798347146,
+      "avg_latency_ms": 278.41052412986755,
+      "total_confusion_matrix": [
+        [
+          2744388,
+          5271
+        ],
+        [
+          61,
+          90086
+        ]
+      ],
+      "instance_count_accuracy": 0.5,
+      "avg_edge_accuracy": 1.0,
+      "avg_edge_precision": 1.0,
+      "avg_edge_recall": 1.0,
+      "avg_edge_f1": 1.0,
+      "grasp_order_accuracy": 1.0,
+      "overall_edge_precision": 0.875,
+      "overall_edge_recall": 0.875,
+      "overall_edge_f1": 0.875,
+      "overall_grasp_accuracy": 1.0,
+      "difficulty_breakdown": {
+        "unknown": {
+          "count": 7,
+          "edge_f1": 1.0,
+          "grasp_acc": 1.0
+        }
+      }
+    }
+  },
+  "depth_zsort": {
+    "config_name": "Depth Threshold + Z-Sort",
+    "config_key": "depth_zsort",
+    "per_scene": [
+      {
+        "scene": "scene_01_side_by_side",
+        "miou": 0.4793718673710442,
+        "iou_table": 0.9587437347420884,
+        "iou_object": 0.0,
+        "latency_ms": 17.103195190429688,
+        "confusion_matrix": [
+          [
+            340099,
+            0
+          ],
+          [
+            14635,
+            0
+          ]
+        ],
+        "boundary_f1": 0.0,
+        "boundary_precision": 0.0,
+        "boundary_recall": 0.0,
+        "instance_count_correct": false,
+        "pred_instances": 0,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 1.0,
+        "edge_recall": 1.0,
+        "edge_f1": 1.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": false,
+        "pred_grasp_order": [],
+        "gt_grasp_order": [
+          0,
+          1
+        ],
+        "pred_edges": [],
+        "gt_edges": [],
+        "has_stacking": false,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_02_partial_overlap_25",
+        "miou": 0.4809512267984871,
+        "iou_table": 0.9619024535969742,
+        "iou_object": 0.0,
+        "latency_ms": 12.514829635620117,
+        "confusion_matrix": [
+          [
+            341308,
+            0
+          ],
+          [
+            13518,
+            0
+          ]
+        ],
+        "boundary_f1": 0.0,
+        "boundary_precision": 0.0,
+        "boundary_recall": 0.0,
+        "instance_count_correct": false,
+        "pred_instances": 0,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 0.0,
+        "edge_recall": 0.0,
+        "edge_f1": 0.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": false,
+        "pred_grasp_order": [],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_03_partial_overlap_50",
+        "miou": 0.48279311442797285,
+        "iou_table": 0.9655862288559457,
+        "iou_object": 0.0,
+        "latency_ms": 11.548042297363281,
+        "confusion_matrix": [
+          [
+            342674,
+            0
+          ],
+          [
+            12213,
+            0
+          ]
+        ],
+        "boundary_f1": 0.0,
+        "boundary_precision": 0.0,
+        "boundary_recall": 0.0,
+        "instance_count_correct": false,
+        "pred_instances": 0,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 0.0,
+        "edge_recall": 0.0,
+        "edge_f1": 0.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": false,
+        "pred_grasp_order": [],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_04_partial_overlap_75",
+        "miou": 0.4853555248330992,
+        "iou_table": 0.9707110496661984,
+        "iou_object": 0.0,
+        "latency_ms": 9.006500244140625,
+        "confusion_matrix": [
+          [
+            344749,
+            0
+          ],
+          [
+            10402,
+            0
+          ]
+        ],
+        "boundary_f1": 0.0,
+        "boundary_precision": 0.0,
+        "boundary_recall": 0.0,
+        "instance_count_correct": false,
+        "pred_instances": 0,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 0.0,
+        "edge_recall": 0.0,
+        "edge_f1": 0.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": false,
+        "pred_grasp_order": [],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_05_full_stack_centered",
+        "miou": 0.48651973202724763,
+        "iou_table": 0.9730394640544953,
+        "iou_object": 0.0,
+        "latency_ms": 11.538982391357422,
+        "confusion_matrix": [
+          [
+            345682,
+            0
+          ],
+          [
+            9578,
+            0
+          ]
+        ],
+        "boundary_f1": 0.0,
+        "boundary_precision": 0.0,
+        "boundary_recall": 0.0,
+        "instance_count_correct": false,
+        "pred_instances": 0,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 0.0,
+        "edge_recall": 0.0,
+        "edge_f1": 0.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": false,
+        "pred_grasp_order": [],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_06_full_stack_offset",
+        "miou": 0.4859617101701551,
+        "iou_table": 0.9719234203403102,
+        "iou_object": 0.0,
+        "latency_ms": 9.981155395507812,
+        "confusion_matrix": [
+          [
+            345061,
+            0
+          ],
+          [
+            9968,
+            0
+          ]
+        ],
+        "boundary_f1": 0.0,
+        "boundary_precision": 0.0,
+        "boundary_recall": 0.0,
+        "instance_count_correct": false,
+        "pred_instances": 0,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 0.0,
+        "edge_recall": 0.0,
+        "edge_f1": 0.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": false,
+        "pred_grasp_order": [],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_07_cross_stack",
+        "miou": 0.48570587705167345,
+        "iou_table": 0.9714117541033469,
+        "iou_object": 0.0,
+        "latency_ms": 9.001970291137695,
+        "confusion_matrix": [
+          [
+            344925,
+            0
+          ],
+          [
+            10151,
+            0
+          ]
+        ],
+        "boundary_f1": 0.0,
+        "boundary_precision": 0.0,
+        "boundary_recall": 0.0,
+        "instance_count_correct": false,
+        "pred_instances": 0,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 0.0,
+        "edge_recall": 0.0,
+        "edge_f1": 0.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": false,
+        "pred_grasp_order": [],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      },
+      {
+        "scene": "scene_08_aligned_stack",
+        "miou": 0.48635734677026177,
+        "iou_table": 0.9727146935405235,
+        "iou_object": 0.0,
+        "latency_ms": 10.028362274169922,
+        "confusion_matrix": [
+          [
+            345161,
+            0
+          ],
+          [
+            9682,
+            0
+          ]
+        ],
+        "boundary_f1": 0.0,
+        "boundary_precision": 0.0,
+        "boundary_recall": 0.0,
+        "instance_count_correct": false,
+        "pred_instances": 0,
+        "gt_instances": 2,
+        "edge_accuracy": 0.0,
+        "edge_precision": 0.0,
+        "edge_recall": 0.0,
+        "edge_f1": 0.0,
+        "edge_correct": 0,
+        "edge_total": 1,
+        "grasp_correct": false,
+        "pred_grasp_order": [],
+        "gt_grasp_order": [
+          1,
+          0
+        ],
+        "pred_edges": [],
+        "gt_edges": [
+          [
+            1,
+            0
+          ]
+        ],
+        "has_stacking": true,
+        "difficulty": "unknown"
+      }
+    ],
+    "summary": {
+      "algo_name": "Depth Threshold + Z-Sort",
+      "algo_key": "depth_zsort",
+      "category": "traditional",
+      "description": "深度阈值分割 + Z轴排序",
+      "avg_miou": 0.48412704993124267,
+      "avg_obj_iou": 0.0,
+      "avg_boundary_f1": 0.0,
+      "avg_latency_ms": 11.34037971496582,
+      "total_confusion_matrix": [
+        [
+          2749659,
+          0
+        ],
+        [
+          90147,
+          0
+        ]
+      ],
+      "instance_count_accuracy": 0.0,
+      "avg_edge_accuracy": 0.0,
+      "avg_edge_precision": 0.0,
+      "avg_edge_recall": 0.0,
+      "avg_edge_f1": 0.0,
+      "grasp_order_accuracy": 0.0,
+      "overall_edge_precision": 0.125,
+      "overall_edge_recall": 0.125,
+      "overall_edge_f1": 0.125,
+      "overall_grasp_accuracy": 0.0,
+      "difficulty_breakdown": {
+        "unknown": {
+          "count": 7,
+          "edge_f1": 0.0,
+          "grasp_acc": 0.0
+        }
+      }
+    }
+  }
+}

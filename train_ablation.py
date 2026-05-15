@@ -158,18 +158,15 @@ class AblationModel(nn.Module):
         sa_cls = _SetAbstractionWithAttention if use_channel_attn else _SetAbstraction
         fp_cls = _FeaturePropagationWithAttention if use_channel_attn else _FeaturePropagation
 
-        self.sa1 = sa_cls(512, 0.2, 32, 3 + in_ch, [64, 64, 128],
-                          use_attention=use_channel_attn)
-        self.sa2 = sa_cls(128, 0.4, 64, 3 + 128, [128, 128, 256],
-                          use_attention=use_channel_attn)
-        self.sa3 = sa_cls(None, None, None, 3 + 256, [256, 512, 1024],
-                          use_attention=use_channel_attn)
-        self.fp3 = fp_cls(256 + 1024, [256, 256],
-                          use_attention=use_channel_attn)
-        self.fp2 = fp_cls(128 + 256, [256, 256, 128],
-                          use_attention=use_channel_attn)
-        self.fp1 = fp_cls(in_ch + 128, [128, 128, 128],
-                          use_attention=use_channel_attn)
+        sa_kwargs = {"use_attention": use_channel_attn} if use_channel_attn else {}
+        fp_kwargs = {"use_attention": use_channel_attn} if use_channel_attn else {}
+
+        self.sa1 = sa_cls(512, 0.2, 32, 3 + in_ch, [64, 64, 128], **sa_kwargs)
+        self.sa2 = sa_cls(128, 0.4, 64, 3 + 128, [128, 128, 256], **sa_kwargs)
+        self.sa3 = sa_cls(None, None, None, 3 + 256, [256, 512, 1024], **sa_kwargs)
+        self.fp3 = fp_cls(256 + 1024, [256, 256], **fp_kwargs)
+        self.fp2 = fp_cls(128 + 256, [256, 256, 128], **fp_kwargs)
+        self.fp1 = fp_cls(in_ch + 128, [128, 128, 128], **fp_kwargs)
 
         self.use_position_attn = use_position_attn
         if use_position_attn:
@@ -271,10 +268,17 @@ ABLATION_CONFIGS = {
     },
     "plus_6ch_input": {
         "name": "+6ch Input",
-        "model_type": "PointNetPlusPlusSeg",
+        "model_type": "AblationModel",
         "input_channels": 6,
         "use_6ch": True,
-        "ablation_flags": None,
+        "ablation_flags": {
+            "use_channel_attn": False,
+            "use_position_attn": False,
+            "use_multiscale_fusion": False,
+            "use_residual_head": False,
+            "use_global_se": False,
+            "use_mid_se": False,
+        },
     },
     "plus_channel_attn": {
         "name": "+Channel Attention",

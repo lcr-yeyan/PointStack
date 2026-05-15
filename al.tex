@@ -1,0 +1,212 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage[left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{booktabs}
+
+\title{基于空间几何与图论的堆叠物体层级推理算法}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{问题定义}
+
+给定场景点云 $\mathcal{P} = \{\mathbf{p}_k\}_{k=1}^{N}$ 及其实例分割结果 $\mathcal{I} = \{\mathcal{O}_i\}_{i=1}^{n}$，其中每个物体 $\mathcal{O}_i$ 由其三维包围盒 $(\mathbf{b}_i^{\min}, \mathbf{b}_i^{\max})$、质心 $\mathbf{c}_i$、以及高度统计量 $(z_i^{\min}, z_i^{\max}, z_i^{\text{mean}})$ 表征。层级推理的目标是恢复物体间的有向支撑关系图 $\mathcal{G} = (\mathcal{V}, \mathcal{E})$，其中 $\mathcal{V} = \{1,\dots,n\}$ 为物体节点，每条有向边 $e_{i \to j} \in \mathcal{E}$ 表示物体 $\mathcal{O}_i$ 支撑于物体 $\mathcal{O}_j$ 之上。
+
+算法分为两个阶段：（1）\textbf{几何感知的支撑边构建}，从原始点云中提取物体对的几何关系并建立候选边；（2）\textbf{图论驱动的层级推理}，在构建的有向无环图上执行深度分析，输出层级分组与稳定性评估。
+
+\section{阶段一：几何感知的支撑边构建}
+
+该阶段的核心任务是将非结构化的点云数据转化为结构化的支撑边集合。对于任意一对物体 $(\mathcal{O}_i, \mathcal{O}_j)$，算法从三个几何维度提取判别特征：
+
+\begin{itemize}
+    \item \textbf{Z 轴间隙}：$d_z(i,j) = z_i^{\min} - z_j^{\max}$，衡量物体 $\mathcal{O}_i$ 底部与 $\mathcal{O}_j$ 顶部在垂直方向上的间距。$d_z > 0$ 是 $\mathcal{O}_i$ 位于 $\mathcal{O}_j$ 之上的必要条件。
+    \item \textbf{XY 投影重叠率}：将两个物体的点云透视投影至相机成像平面，计算像素级面积极小交并比：
+    \[
+    r_{xy}(i,j) = \frac{A\big(B_i^{2D} \cap B_j^{2D}\big)}{\min\!\big(A(B_i^{2D}),\, A(B_j^{2D})\big)}
+    \]
+    其中 $B_i^{2D}$ 为 $\mathcal{O}_i$ 在像平面上的像素外接矩形。采用极小交并比（除以较小者面积）而非标准 IoU 的原因是：当上层物体面积显著小于下层物体时，标准 IoU 会低估重叠程度，而极小交并比能更准确地反映上层物体被下层承接的程度。
+    \item \textbf{质心平面距离}：$\rho_{xy}(i,j) = \lVert \mathbf{c}_i^{xy} - \mathbf{c}_j^{xy} \rVert$，辅助判定空间邻近性。
+\end{itemize}
+
+基于上述特征，算法采用级联过滤与置信度分配策略判定支撑类型：
+
+\begin{itemize}
+    \item 首先执行\textbf{硬过滤}：$d_z$ 必须为正且不超过最大堆叠高度（$0.30$m）；$r_{xy}$ 必须超过最小重叠阈值（$0.03$）。不满足任一条件则直接排除该物体对。
+    \item 通过过滤后，根据 $d_z$ 和 $r_{xy}$ 的组合判定支撑类型并赋予置信度：
+    \begin{itemize}
+        \item \textbf{直接接触} ($d_z < 0.035$m)：上层底部紧贴下层顶部，置信度 $0.95$；
+        \item \textbf{明显重叠} ($r_{xy} > 0.10$)：XY 投影高度重叠，置信度 $0.85$；
+        \item \textbf{一般重叠} ($r_{xy}$ 超过最小阈值)：置信度 $0.80$；
+        \item \textbf{质心邻近} ($\rho_{xy}$ 低于阈值)：置信度 $0.80$。
+    \end{itemize}
+\end{itemize}
+
+上述判定完成后，算法进一步构建\textbf{间接支撑边}。核心动机是：若 $\mathcal{O}_A$ 支撑于 $\mathcal{O}_B$，$\mathcal{O}_B$ 又支撑于 $\mathcal{O}_C$，则 $\mathcal{O}_A$ 间接支撑于 $\mathcal{O}_C$。这种传递闭包关系对多物体堆叠场景的稳定性评估具有重要意义。算法以 BFS 方式遍历直接边构成的传递链，最大深度设为 $3$，间接边的置信度随深度衰减：$c_N = \max(0.3,\, 0.70 - N \times 0.15)$，其中 $N$ 为传递深度。
+
+\begin{algorithm}[htbp]
+\caption{阶段一：几何感知的支撑边构建}
+\label{alg:phase1}
+\begin{algorithmic}[1]
+\Require instances $\{\mathcal{O}_i\}_{i=1}^{n}$，点云 $\mathcal{P}$
+\Ensure 支撑边集合 $\mathcal{E}$
+
+\State {\bf Step 1：实例预处理 —— 几何特征提取}
+\For{$i \gets 1$ \textbf{to} $n$}
+    \State 提取 $\mathcal{O}_i$ 底部 15\% 的点，对去中心化矩阵做 SVD 分解
+    \State $\mathbf{n}_i^{\text{support}} \gets$ 最小奇异值对应向量（支撑面法向）
+    \State $z_i^{\min}, z_i^{\max}, z_i^{\text{mean}} \gets$ 百分位数法鲁棒估计（P2, P98, P50）
+    \State $h_i \gets z_i^{\max} - z_i^{\min}$
+\EndFor
+\State 按 $z^{\text{mean}}$ 降序排列，得 sorted\_instances
+
+\State {\bf Step 2：逐对支撑判定 —— 级联过滤 + 置信度分配}
+\State $\mathcal{E} \gets \varnothing$
+\State 为每个实例预计算 2D 像素投影边界框 pixel\_bboxes
+\For{$i \gets 0$ \textbf{to} $n-1$}
+    \For{$j \gets i+1$ \textbf{to} $n-1$}
+        \State $\mathcal{O}_u \gets$ sorted\_instances[$i$]，$\mathcal{O}_l \gets$ sorted\_instances[$j$]
+        \State $d_z \gets z_u^{\min} - z_l^{\max}$，$\Delta z_{\text{mean}} \gets z_u^{\text{mean}} - z_l^{\text{mean}}$
+        \State $r_{xy} \gets$ pixel\_overlap$(\mathcal{O}_u, \mathcal{O}_l) \;/\; \min(A_u^{2D}, A_l^{2D})$
+        \State $\rho_{xy} \gets \lVert \mathbf{c}_u^{xy} - \mathbf{c}_l^{xy} \rVert$
+
+        \If{$\Delta z_{\text{mean}} \leq \delta_z^{\min}$ \textbf{or} $\Delta z_{\text{mean}} \geq \delta_z^{\max}$}
+            \State \textbf{continue} \Comment{高度差不满足堆叠约束}
+        \EndIf
+        \If{$r_{xy} \leq r_{xy}^{\min}$}
+            \State \textbf{continue} \Comment{缺乏 XY 投影重叠}
+        \EndIf
+
+        \State \textbf{// 级联判定支撑类型}
+        \If{$d_z < \tau_{\text{contact}}$}
+            \State $t \gets$ direct\_contact，$c \gets 0.95$
+        \ElsIf{$r_{xy} > 0.10$}
+            \State $t \gets$ overlap\_support，$c \gets 0.85$
+        \ElsIf{$r_{xy} > r_{xy}^{\min}$}
+            \State $t \gets$ xy\_overlap，$c \gets 0.80$
+        \ElsIf{$\rho_{xy} < \tau_{\text{prox}} \times 0.5$}
+            \State $t \gets$ centroid\_proximity，$c \gets 0.80$
+        \Else
+            \State $t \gets$ vertical\_separation，$c \gets 0.75$
+        \EndIf
+
+        \If{$c \geq 0.70$}
+            \State $\mathcal{E} \gets \mathcal{E} \cup \{e_{u \to l}(c, t)\}$
+        \EndIf
+    \EndFor
+\EndFor
+
+\State {\bf Step 3：间接支撑 —— BFS 传递闭包}
+\If{间接支撑启用}
+    \State $\text{children}[u] \gets \{l \mid e_{u \to l} \in \mathcal{E}\}$ \Comment{构建子节点映射}
+    \For{\textbf{each} $u_{\text{root}}$ \textbf{in} children}
+        \State queue $\gets$ \{$(v, 1)$ for $v \in \text{children}[u_{\text{root}}]$\}
+        \While{queue $\neq \varnothing$}
+            \State $(v, N) \gets$ queue.pop()
+            \If{$N > N_{\max}$} \textbf{continue} \EndIf
+            \For{\textbf{each} $w \in \text{children}[v]$}
+                \If{$e_{u_{\text{root}} \to w}$ 不存在且未添加}
+                    \State $c \gets \max(0.3,\; 0.70 - N \times 0.15)$
+                    \State $\mathcal{E} \gets \mathcal{E} \cup \{e_{u_{\text{root}} \to w}(c, \text{indirect\_depth\_}N)\}$
+                    \State queue.push($(w, N+1)$)
+                \EndIf
+            \EndFor
+        \EndWhile
+    \EndFor
+\EndIf
+\State \Return $\mathcal{E}$
+\end{algorithmic}
+\end{algorithm}
+
+\section{阶段二：图论驱动的层级推理}
+
+第一阶段输出的支撑边集合 $\mathcal{E}$ 天然构成有向无环图（DAG），因为所有边均从高处物体指向低处物体，不可能存在环路。本阶段利用 DAG 的结构特性，通过深度优先搜索（DFS）计算每个节点在图中的拓扑深度，进而将节点分组为层级。
+
+\begin{itemize}
+    \item \textbf{DAG 构建}：以邻接表形式表示，$\forall e_{i \to j} \in \mathcal{E}$，将 $j$ 加入 $\text{adj}[i]$。
+    \item \textbf{层级分配}：定义节点 $v$ 的深度为从 $v$ 出发到任意叶节点的最长路径长度（边数）：
+    \[
+    \text{depth}(v) = \begin{cases}
+        0 & \text{if } \text{adj}[v] = \varnothing \quad\text{(叶节点 / 顶层物体)}\\[4pt]
+        \displaystyle 1 + \max_{u \in \text{adj}[v]} \text{depth}(u) & \text{otherwise}
+    \end{cases}
+    \]
+    这一递归定义的含义是：若物体 $\mathcal{O}_v$ 没有支撑任何下层物体（$\text{adj}[v] = \varnothing$），则它位于堆叠结构的顶层；否则，它的深度为所有直接下层物体深度的最大值加一。因此，深度越大表示该物体越靠近桌面（底部），深度为零的节点位于堆叠结构的顶端。
+    \item \textbf{稳定性评估}：对每个物体 $\mathcal{O}_i$，定义其稳定性分数为三个子指标的加权和：
+    \[
+    S(i) = \alpha_c \cdot s_c(i) + \alpha_n \cdot s_n(i) + \alpha_t \cdot s_t(i)
+    \]
+    其中：
+    \begin{itemize}
+        \item \textbf{质心投影分数} $s_c(i)$：评估 $\mathcal{O}_i$ 的质心在 XY 平面上的投影是否落在支撑物范围内。若投影精确落在支撑面内，$s_c = 1.0$；若重叠率 $> 0.3$，$s_c = 0.7$；否则 $s_c = 0.3$。
+        \item \textbf{接触面分数} $s_n(i)$：与支撑物数量成正比，$s_n(i) = \min(1.0,\, |\text{supporters}(i)| \times 0.4)$，反映多点支撑带来的稳定性增益。
+        \item \textbf{接触类型分数} $s_t(i)$：若存在直接接触型支撑边则 $s_t = 1.0$，否则 $s_t = 0.6$。
+    \end{itemize}
+    权重默认为 $\alpha_c = 0.4$、$\alpha_n = 0.3$、$\alpha_t = 0.3$。
+\end{itemize}
+
+\begin{algorithm}[htbp]
+\caption{阶段二：图论驱动的层级推理}
+\label{alg:phase2}
+\begin{algorithmic}[1]
+\Require 支撑边集合 $\mathcal{E}$，实例列表 $\{\mathcal{O}_i\}_{i=1}^{n}$
+\Ensure 层级分组 $\mathcal{L}$，稳定性分数 $\{S(i)\}$
+
+\State {\bf Step 4：DAG 构建}
+\State $\text{adj}[i] \gets \varnothing$ \textbf{for} $i \gets 1$ \textbf{to} $n$
+\For{\textbf{each} $e_{u \to l} \in \mathcal{E}$}
+    \State $\text{adj}[u]$.append($l$)
+\EndFor
+
+\State {\bf Step 5：DFS 深度分层}
+\State memo $\gets \varnothing$
+\Function{ComputeDepth}{$v$}
+    \If{$v \in$ memo} \Return memo[$v$] \EndIf
+    \If{$\text{adj}[v] = \varnothing$}
+        \State memo[$v$] $\gets 0$ \Comment{叶节点 = 顶层}
+        \State \Return 0
+    \EndIf
+    \State $d_{\max} \gets \displaystyle\max_{u \in \text{adj}[v]}$ \Call{ComputeDepth}{$u$}
+    \State memo[$v$] $\gets d_{\max} + 1$
+    \State \Return memo[$v$]
+\EndFunction
+\State $\mathcal{L} \gets \varnothing$ \Comment{$\mathcal{L}[d]$ = 深度为 $d$ 的节点集合}
+\For{$i \gets 1$ \textbf{to} $n$}
+    \State $d \gets$ \Call{ComputeDepth}{$i$}
+    \State $\mathcal{L}[d]$.append($i$)
+\EndFor
+
+\State {\bf Step 6：多因子稳定性评估}
+\For{$i \gets 1$ \textbf{to} $n$}
+    \State $\mathcal{S} \gets \{l \mid e_{i \to l} \in \mathcal{E}\}$ \Comment{$\mathcal{O}_i$ 的支撑物集合}
+    \If{$\mathcal{S} = \varnothing$}
+        \State $S(i) \gets 1.0$ \Comment{孤立物体，完全稳定}
+    \Else
+        \State $s_c \gets 0.3$，$s_n \gets \min(1.0,\, |\mathcal{S}| \times 0.4)$
+        \For{\textbf{each} $l \in \mathcal{S}$}
+            \If{centroid 投影在 $\mathcal{O}_l$ 内} $s_c \gets \max(s_c, 1.0)$
+            \ElsIf{$r_{xy}(i,l) > 0.3$} $s_c \gets \max(s_c, 0.7)$ \EndIf
+        \EndFor
+        \State $s_t \gets$ (存在 direct\_contact 边) ? $1.0$ : $0.6$
+        \State $S(i) \gets \text{clamp}(0.4 s_c + 0.3 s_n + 0.3 s_t,\; 0,\; 1)$
+    \EndIf
+\EndFor
+
+\State \Return $(\mathcal{L},\, \{S(i)\})$
+\end{algorithmic}
+\end{algorithm}
+
+\section{后续输出}
+
+在阶段二结果的基础上，继续推导两个下游输出：
+
+\begin{itemize}
+    \item \textbf{抓取顺序}：基于层级分组 $\mathcal{L}$ 执行 top-down 拓扑排序。从最顶层（depth 最大）向最底层（depth = 0）遍历，层内按优先级排序：高层物体（压在别的物体上）优先抓取（优先级 2），低层物体（被压住）次之（优先级 1），独立物体最后（优先级 0）。同级内按稳定性降序、质心高度降序排列，确保机械臂抓取时不会破坏下方结构的稳定性。
+    \item \textbf{堆叠组识别}：在支撑边集合 $\mathcal{E}$ 上运行 Union-Find，将存在支撑关系的物体归入同一堆叠组。每个组内按 $z^{\text{mean}}$ 降序排列，独立物体各自成组。
+\end{itemize}
+
+\end{document}

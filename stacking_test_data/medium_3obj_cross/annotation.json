@@ -1,0 +1,61 @@
+{
+  "scene_name": "medium_3obj_cross",
+  "description": "中等: 3物体交叉堆叠",
+  "num_objects": 3,
+  "difficulty": "medium",
+  "objects": [
+    {
+      "id": 0,
+      "z_min": 0.62,
+      "z_max": 0.63,
+      "z_mean": 0.625,
+      "bbox_2d": [
+        136,
+        102,
+        145,
+        109
+      ]
+    },
+    {
+      "id": 1,
+      "z_min": 0.645,
+      "z_max": 0.655,
+      "z_mean": 0.65,
+      "bbox_2d": [
+        155,
+        130,
+        164,
+        137
+      ]
+    },
+    {
+      "id": 2,
+      "z_min": 0.67,
+      "z_max": 0.68,
+      "z_mean": 0.675,
+      "bbox_2d": [
+        174,
+        102,
+        183,
+        109
+      ]
+    }
+  ],
+  "hierarchy": {
+    "edges": [
+      {
+        "upper": 0,
+        "lower": 1
+      },
+      {
+        "upper": 1,
+        "lower": 2
+      }
+    ],
+    "grasp_order": [
+      0,
+      1,
+      2
+    ]
+  }
+}
